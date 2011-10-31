@@ -1,0 +1,44 @@
+#! /bin/bash
+
+## Updates the OpenJML update site at 
+## http://jmlspecs.sourceforge.net/openjml-updatesite
+## and the web pages on the jmlspecs site
+## All existing feature and plugin files are uploaded
+
+cd C:/cygwin/home/dcok/eprojects/OpenJMLUpdateSite
+cp ../../texstuff/papers/OpenJMLUserGuide/OpenJMLUserGuide.pdf web
+rm -f web/*.gz
+file=`ls -t ../OpenJML/*.tar.gz | head -1`
+echo $file
+filedate=`echo $file | tr -d [a-zA-Z./] | tr -d '-'`
+echo The current version is $version, with build date $filedate, file $file
+echo The current version is $version, with build date $filedate | cat web/README-root - > web/README
+
+cp ../OpenJML/$file web
+
+sftp davidcok,jmlspecs@web.sourceforge.net  << HERE
+cd htdocs
+put web/index.html
+put web/features.html
+put web/book.css
+put web/OpenJMLUserGuide.pdf
+put web/*.gz openjml.tar.gz
+cd openjml-updatesite
+put web/openjml-updatesite/index.html
+put web/book.css
+put site.xml
+put content.jar
+put artifacts.jar
+put features/* features
+put plugins/* plugins
+
+cd /home/frs/project/j/jm/jmlspecs/OpenJML
+put web/README
+put web/OpenJMLUserGuide.pdf
+put web/*.gz openjml.tar.gz
+exit
+HERE
+
+
+
+

@@ -1,0 +1,23 @@
+#! /bin/bash
+
+## This updates http://jmlspecs.sourceforge.net/
+## just the web pages, not the Eclipse update site
+
+cd C:/cygwin/home/dcok/eprojects/OpenJMLUpdateSite
+cp ../../texstuff/papers/OpenJMLUserGuide/OpenJMLUserGuide.pdf web
+rm -f web/*.gz
+file=`ls -t ../OpenJML/*.tar.gz | head -1`
+cp ../OpenJML/$file web
+sftp davidcok,jmlspecs@web.sourceforge.net  << HERE
+cd htdocs
+put web/index.html
+put web/features.html
+put web/book.css
+put web/OpenJMLUserGuide.pdf
+cd openjml-updatesite
+put web/openjml-updatesite/index.html
+put web/book.css
+exit
+HERE
+
+

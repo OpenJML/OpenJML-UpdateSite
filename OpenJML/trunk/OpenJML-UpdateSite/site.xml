@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.1.16.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.1.16">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.1.17.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.1.17">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.1.18.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.1.18">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.1.19.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.1.19">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.1.20.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.1.20">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.1.21.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.1.21">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.2.0.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.2.0">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.2.1.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.2.1">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.2.2.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.2.2">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.2.3.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.2.3">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <category-def name="org.jmlspecs.openjml.OpenJMLPlugin" label="OpenJML">
+      <description>
+         This update site packages the OpenJML application within an Eclipse plugin.
+      </description>
+   </category-def>
+</site>

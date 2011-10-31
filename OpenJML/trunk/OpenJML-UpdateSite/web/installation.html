@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title>OpenJML</title>
+<link href="book.css" rel="STYLESHEET" type="text/css" />    
+<link rel="SHORTCUT ICON" href="images/favicon.ico" />
+</head>
+
+<body>
+
+<div id="banner">
+<h1><center>OpenJML Installation and Execution</center></h1>
+</div>
+<A HREF="#installation">Installation</A><BR>
+<A HREF="#Execution">Execution</A><BR>
+<A HREF="#Eclipse">OpenJML in Eclipse</A>
+
+<A NAME="installation"/>
+<H2>Installation</H2>
+
+ToBeWritten
+
+<A NAME="Execution"/>
+<H2>Execution</H2>
+
+To execute the OpenJML, you need
+<UL>
+<LI>An appropriate Java VM: Java 7
+<LI>A copy of the OpenJML release. The release may be installed anywhere you like; it contains the openjml.jar, jmlspecs.jar, and jmlruntime.jar files.
+</UL>
+
+<h3>Type-checking</h3>
+
+The OpenJML tool operates like a Java compiler, on a set of files.  For example, the command
+
+<div style="background-color:lightblue">
+<code> <BR>
+java -jar openjml.jar -noPurityCheck A.java
+<BR><BR> </code>
+</div>
+will type-check the Java and JML in the A.java file and any classes on which it depends.
+(The <code>-noPurityCheck</code> option suppresses many warnings about the use of non-pure functions, since the JDK libraries are not yet populated with appropriate pure annotations.)
+<P>
+For example, put the following text in a file named <code>A.java</code> and execute the command above. 
+<div style="background-color:lightblue">
+<code> <pre>
+public class A {
+
+  //@ ensures \result == true;
+  public void m() {}
+
+}
+</pre> </code>
+</div>
+
+The following output is obtained:
+<div style="background-color:lightblue">
+<code> <pre>
+A.java:3: A \result expression may not be used in the specification of a method that returns void
+  //@ ensures \result == true;
+               ^
+1 error
+</pre> </code>
+</div>
+
+There are a few important topics for the user to know:
+<UL>
+<LI><A HREF="#FindingFiles">How source, files, class files, and specification files are found</A>
+<LI><A HREF="#Options">Command-line options</A>
+<LI><A HREF="#Checks">The set of checks the tools perform</A>
+</UL>
+These topics are discussed below or at the indicated links.
+
+<h3>Static checking</h3>
+To perform static checking of the JML specifications in the given files and in any files that they reference, use the -esc option:
+<div style="background-color:lightblue">
+<code> <BR>
+java -jar openjml.jar -esc -noPurityCheck B.java
+<BR><BR> </code>
+</div>
+<P>
+For example, place the following text in the file <code>B.java</code> and execute the command above.
+<div style="background-color:lightblue">
+<code> <PRE>
+public class B {
+
+  static int j,k;
+
+  //@ requires i > 0;
+  //@ modifies j;
+  //@ ensures j == i;
+  public static void setj(int i) {
+    k = i;
+  }
+
+  //@ ensures j == 1;
+  public static void main(String[] args) {
+    setj(0);
+  }
+
+}
+</PRE> </code>
+</div>
+<P>
+The following output is produced:
+<div style="background-color:lightblue">
+<code> <PRE>
+B.java:9: warning: The prover cannot establish an assertion (Assignable) in meth
+od setj
+    k = i;
+      ^
+B.java:14: warning: The prover cannot establish an assertion (Precondition) in m
+ethod main
+    setj(0);
+        ^
+B.java:5: warning: Associated declaration
+  //@ requires i > 0;
+               ^
+3 warnings
+</PRE> </code>
+</div>
+<P>
+<UL>
+<LI>The first warning points out that the specification of the method <code>setj</code> states that the field <code>k</code> (and nothing else) is modified by the method, but the method actually modifies <code>j</code>.
+<LI>The second warning points out the call of <code>setj</code> in method <code>main</code> does not satsify the precondition; the "Associated declaration" warning that follows indicates the violated precondition.
+</UL>
+
+<h3>Runtime assertion checking</h3>
+To compile the JML specifications in the given files and in any files that they reference as assertions to be checked at runtime, use the -rac option:
+<div style="background-color:lightblue">
+<code> <BR> 
+java -jar openjml.jar -rac -noPurityCheck B.java
+<BR><BR> </code>
+</div>
+<P>
+Then execute this command (the jmlruntime.jar is part of the OpenJML installation -- include the full path to that library as needed)
+<div style="background-color:lightblue">
+<code> <PRE>
+
+java -classpath ".;jmlruntime.jar" B
+
+</PRE> </code>
+</div>
+<P>
+
+The following output is produced:
+<div style="background-color:lightblue">
+<code> <PRE>
+B.java:5: JML precondition is false
+B.java:12: JML postcondition is false
+</PRE> </code>
+</div>
+<P>
+
+<h3>Producing documentation</h3>
+To produce javadoc files with JML specifications inserted, use the following command:
+<div style="background-color:lightblue">
+<code> <BR> 
+java -jar openjml.jar -doc -noPurityCheck </code><I>files-or-packages</I>
+<BR><BR> </code>
+</div>
+
+<H3>Finding source, class and specification files</H3>
+When a Java compiler compiles soursce files, it considers three types of files:
+<UL>
+<LI>Source files listed on the command-line
+<LI>Other source files referenced by those listed on the command-line, but not on the command-line themselves
+<LI>Already-compiled class files
+</UL>
+The OpenJML tool considers the same files, but also needs
+<UL>
+<LI>Specification files associated with classes in the program
+</UL>
+
+The OpenJML tool behaves in a way similar to a typical compiler, making use of three directory paths - the classpath, the sourcepath, and the specspath.  These paths are standard lists of directories or jar files, separated either by colons (Unix) or semicolons (Windows).  Java packages are subdirectories of these directories.
+<UL>
+<LI><code>classpath</code>: The OpenJML classpath is set with one of these alternatives, in priority order:
+<UL>
+<LI>As the argument to the OpenJML command-line option <code>-classpath</code>.
+<LI>As the value of the Java property <code>org.jmlspecs.openjml.classpath</code>
+<LI>As the value of the system environment variable <code>CLASSPATH</code>
+</UL>
+<LI><code>sourcepath</code>: The OpenJML sourcepath is set with one of these alternatives, in priority order:
+<UL>
+<LI>As the argument of the OpenJML command-line option <code>-sourcepath</code>
+<LI>As the value of the Java property <code>org.jmlspecs.openjml.sourcepath</code>
+<LI>As the value of the OpenJML classpath (as determined above).
+</UL>
+<LI><code>specspath</code>: The OpenJML specifications path is set with one of these alternatives, in priority order:
+<UL>
+<LI>As the argument of the OpenJML command-line option <code>-specspath</code>
+<LI>As the value of the Java property <code>org.jmlspecs.openjml.specspath</code>
+<LI>As the value of the OpenJML sourcepath (as determined above).
+</UL>
+</UL>
+Note that with no command-line options or Java properties set, the result is simply that the system CLASSPATH is used for all of these paths. A common practice is to simply use a single directory path, specified on the command-line using <code>-classpath</code>, for all three paths.
+<P>
+The paths are used as follows to find relevant files:
+
+<UL>
+<LI>Files listed on the command-line are found directly in the file system. If the command-line element is an absolute path to a <code>.java</code> file, it is looked up in the file system as an absolute path; if the command-line element is a relative path, the file is found relative to the current working directory.
+<LI>Classes that are referenced by classes on the command-line or transitively by other classes in the program, can be found in one of two ways:
+<UL>
+<LI>The source file for the class is sought as a sub-file of an element of the <code>sourcepath</code>.
+<LI>The class file for the class is sought as a sub-file of an element of the <code>classpath</code>.
+</UL>
+If there is both a sourcefile and a classfile present, then TBD.
+<LI>The OpenJML tool also looks for a specification file for each source or class file used in the program. The specification file is a Java-like file that has a <code>.jml</code> suffix, but otherwise has the same name and Java package as the class that it specifies. The specification file used is the first file with the correct name and package found in the sequence of directories and jar files that make up the specspath. If no such specification file is found, the the specifications in the <code>.java</code> source file are used (as found on the command-line or on the sourcepath).
+</UL>
+
+</UL>
+
+
+<A NAME="Eclipse"/>
+<H2>OpenJML in Eclipse</H2>
+
+
+</body>
+
+</html>
+
