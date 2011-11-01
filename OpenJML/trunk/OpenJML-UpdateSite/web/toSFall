@@ -5,16 +5,8 @@
 ## and the web pages on the jmlspecs site
 ## All existing feature and plugin files are uploaded
 
-cd C:/cygwin/home/dcok/eprojects/OpenJMLUpdateSite
-cp ../../texstuff/papers/OpenJMLUserGuide/OpenJMLUserGuide.pdf web
-rm -f web/*.gz
-file=`ls -t ../OpenJML/*.tar.gz | head -1`
-echo $file
-filedate=`echo $file | tr -d [a-zA-Z./] | tr -d '-'`
-echo The current version is $version, with build date $filedate, file $file
-echo The current version is $version, with build date $filedate | cat web/README-root - > web/README
-
-cp ../OpenJML/$file web
+cd C:/cygwin/home/dcok/eprojects/OpenJML-UpdateSite
+source web/setup
 
 sftp davidcok,jmlspecs@web.sourceforge.net  << HERE
 cd htdocs
