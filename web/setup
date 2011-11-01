@@ -1,0 +1,19 @@
+#! /bin/bash
+
+## This script copies files from elsewhere and creates the README file
+## It is a common setup file used by the various scripts that copy to sourceforge
+
+cd C:/cygwin/home/dcok/eprojects/OpenJML-UpdateSite
+cp ../../texstuff/papers/OpenJMLUserGuide/OpenJMLUserGuide.pdf web
+cp ../OpenJML/OpenJML-projectSet.psf web
+rm -f web/*.gz
+version=`ls -t features/* | head -1 | sed -e sxfeatures/org.jmlspecs.openjml.OpenJMLFeature_xx -e sx.jarxx`
+file=`ls -t ../OpenJML/*.tar.gz | head -1`
+filedate=`echo $file | tr -d [a-zA-Z./] | tr -d '-'`
+echo The current version is $version, with build date $filedate, file $file
+echo The current version is $version, with build date $filedate | cat web/README-root - > web/README
+
+cp ../OpenJML/$file web
+
+
+

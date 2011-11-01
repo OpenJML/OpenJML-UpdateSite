@@ -4,16 +4,12 @@
 ## https://sourceforge.net/projects/jmlspecs/files/OpenJML
 ## Note that these are just mirrors of the files at jmlspecs.sourceforge.net
 
-cd C:/cygwin/home/dcok/eprojects/OpenJMLUpdateSite
-cp ../../texstuff/papers/OpenJMLUserGuide/OpenJMLUserGuide.pdf web
-rm -f web/*.gz
-file=`ls -t ../OpenJML/*.tar.gz | head -1`
-echo $file
-cp ../OpenJML/$file web
+cd C:/cygwin/home/dcok/eprojects/OpenJML-UpdateSite
+source web/setup
+
 sftp davidcok,jmlspecs@web.sourceforge.net  << HERE
 cd /home/frs/project/j/jm/jmlspecs/OpenJML
-put web/index.html
-put web/book.css
+put web/README
 put web/OpenJMLUserGuide.pdf
 put web/*.gz openjml.tar.gz
 exit
