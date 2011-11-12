@@ -13,7 +13,7 @@
 <body>
 
 <div id="banner">
-<h1>OpenJML</h1>
+<center><h1>OpenJML</h1></center>
 </div>
 
 <div id="rest">  
@@ -25,9 +25,26 @@
 <!-- to use this template, change the title and redirection url in the
      head, the h1, and the content below -->
 
+<h2>JML</h2>
 <p>
+The Java Modeling Language (JML) is a language that enables logical assertions
+to be made about Java programs. The assertions are expressed as structured 
+Java comments or Java annotations. Various tools can then read the JML 
+information and do static checking, runtime checking, display for documentation,
+or other useful tasks.
+</p>
+<p>
+More information about JML can be found on the 
+<A HREF="http://www.jmlspecs.org">JML web site</A>.
+The information includes publications, groups using or contributing to JML, 
+mailing lists, etc.
+There is also a <A HREF="https://sourceforge.net/projects/jmlspecs/">sourceforge project for JML</A>.
+<h2>OpenJML</h2>
+<p>
+OpenJML is a tool set for JML, built on the OpenJDK framework for Java.
+OpenJML is current with Java 1.7.
 This page makes available some resources for OpenJML.
-OpenJML is a set of JML tools built on OpenJDK, and thus updated to Java 1.7.
+OpenJML is a work in progress.
 </p>
 <P>
 A summary of the features and the implementation status of OpenJML is 
@@ -37,32 +54,36 @@ A summary of the features and the implementation status of OpenJML is
 <P>
 Note that OpenJML requires an OpenJDK build of Java 1.7 to run.
 Such builds can be obtained from 
-<A href="http://dlc.sun.com.edgesuite.net/jdk7/binaries/index.html">this binary snapshot release site</A>.
+<A href="http://www.oracle.com/technetwork/java/javase/downloads">the Oracle release site</A>.
 MacOSX releases can be obtained from
 <a href="http://formalmethods.insttech.washington.edu/software/openjml.html">
 Dan Zimmerman's site</A>.
-I (David Cok) am using Dan's builds and 
-<A href="openjdk-7-ea-src-b103-29_jul_2010.zip">this Windows/Cygwin build</A> successfully.
-<P>
-The OpenJML command line tool can be downloaded from
-<A HREF="openjml.tar.gz">here</A>.
-</P>
 
+<h3>Documentation</h3>
 <P>
 The OpenJML user guide is part of the download, but is also available 
 <A HREF="OpenJMLUserGuide.pdf">here</A>.
 </P>
 
+<h3>Command-line tool</h3>
+<P>
+The OpenJML command line tool can be downloaded from
+<A HREF="openjml.tar.gz">here</A>.
+</P>
+
+
+<h3>Eclipse plug-in</h3>
 <P>
 The Update site for the Eclipse plug-in that encapsulates the OpenJML tool
 is <A HREF="openjml-updatesite">http://jmlspecs.sourceforge.net/openjml-updatesite</A>.
 </P>
 
-<p>The webpage for the JML project is 
-<a href="http://www.jmlspecs.org/index.shtml"><code>http://www.jmlspecs.org/index.shtml</code></a></p>
 
+<H3>Development of OpenJML</h3>
 <p>Developers on OpenJML can retrieve a project-set file to download source code from SVN and create the corresponding projects within Eclipse from 
 <A HREF="OpenJML-projectSet.psf">here</A>.
+<p>
+The general instructions for setting up a development environment are found on the <A HREF=https://sourceforge.net/apps/trac/jmlspecs/wiki/OpenJmlSetup>JML wiki</A>.
 
 </div>
 </div>
