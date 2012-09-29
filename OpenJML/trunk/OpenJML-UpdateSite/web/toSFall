@@ -11,9 +11,11 @@ source web/setup
 sftp davidcok,jmlspecs@web.sourceforge.net  << HERE
 cd htdocs
 put web/index.html
+put web/installation.html
 put web/features.html
 put web/book.css
 put web/OpenJMLUserGuide.pdf
+put web/OpenJML-projectSet.psf
 put web/*.gz openjml.tar.gz
 cd openjml-updatesite
 put web/openjml-updatesite/index.html
@@ -28,6 +30,7 @@ cd /home/frs/project/j/jm/jmlspecs/OpenJML
 put web/README
 put web/OpenJMLUserGuide.pdf
 put web/*.gz openjml.tar.gz
+
 exit
 HERE
 

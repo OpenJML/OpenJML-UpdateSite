@@ -1,7 +1,15 @@
-#! /bin/bash
 
-## This script copies files from elsewhere and creates the README file
+## This script should be SOURCED, not executed
+
+## This script copies files from elsewhere into the 'web' subdirectory and creates the README file
 ## It is a common setup file used by the various scripts that copy to sourceforge
+
+## Copy the current version of the UserGuide
+## Copy the current version of the .psf file
+## Remove old versions of the release
+## Copy the most current plug-in feature file
+## Create a current version of the README file
+## Sets the value of the 'version' variable
 
 cd C:/cygwin/home/dcok/eprojects/OpenJML-UpdateSite
 cp ../../texstuff/papers/OpenJMLUserGuide/OpenJMLUserGuide.pdf web
