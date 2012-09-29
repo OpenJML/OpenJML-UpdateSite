@@ -1,3 +1,0 @@
-
-ssh -t davidcok,jmlspecs@shell.sourceforge.net create
-##cd /home/groups/j/jm/jmlspecs/htdocs/openjml-updatesite

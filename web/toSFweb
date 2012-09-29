@@ -1,7 +1,7 @@
 #! /bin/bash
 
 ## This updates http://jmlspecs.sourceforge.net/
-## just the web pages, not the Eclipse update site
+## just the web pages, not the actual release files on the Eclipse update site
 
 cd C:/cygwin/home/dcok/eprojects/OpenJML-UpdateSite
 source web/setup
@@ -9,6 +9,7 @@ source web/setup
 sftp davidcok,jmlspecs@web.sourceforge.net  << HERE
 cd htdocs
 put web/index.html
+put web/installation.html
 put web/features.html
 put web/book.css
 put web/OpenJML-projectSet.psf

@@ -10,6 +10,7 @@ source web/setup
 sftp davidcok,jmlspecs@web.sourceforge.net  << HERE
 cd htdocs
 put web/index.html
+put web/installation.html
 put web/features.html
 put web/book.css
 put web/OpenJMLUserGuide.pdf
