@@ -36,6 +36,15 @@
    <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.2.5.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.2.5">
       <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
    </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.2.7.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.2.7">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.2.8.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.2.8">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.2.14.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.2.14">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
    <category-def name="org.jmlspecs.openjml.OpenJMLPlugin" label="OpenJML">
       <description>
          This update site packages the OpenJML application within an Eclipse plugin.
