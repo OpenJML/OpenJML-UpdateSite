@@ -1,0 +1,8 @@
+cd /home/frs/project/j/jm/jmlspecs/OpenJML
+put web/files/README
+put web/files/OpenJMLUserGuide.pdf
+put web/files/*.gz openjml.tar.gz
+
+
+
+

@@ -1,0 +1,10 @@
+cd htdocs
+put web/files/*.gz openjml.tar.gz
+cd openjml-updatesite
+put site.xml
+put content.jar
+put artifacts.jar
+put features/org.jmlspecs.openjml.OpenJMLFeature_${version}.jar features
+put plugins/org.jmlspecs.*${version}.jar plugins
+cd ..
+cd ..

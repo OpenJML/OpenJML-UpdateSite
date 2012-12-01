@@ -1,0 +1,14 @@
+cd htdocs
+put web/files/*.gz openjml.tar.gz
+cd openjml-updatesite
+put site.xml
+put content.jar
+put artifacts.jar
+put features/* features
+put plugins/* plugins
+cd ..
+cd ..
+
+
+
+
