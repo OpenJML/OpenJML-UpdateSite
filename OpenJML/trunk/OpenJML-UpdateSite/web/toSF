@@ -15,6 +15,7 @@ put web/features.html
 put web/book.css
 put web/OpenJMLUserGuide.pdf
 put web/OpenJML-projectSet.psf
+put web/svn_commands
 put web/*.gz openjml.tar.gz
 cd openjml-updatesite
 put web/openjml-updatesite/index.html

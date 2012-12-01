@@ -13,6 +13,7 @@ put web/installation.html
 put web/features.html
 put web/book.css
 put web/OpenJML-projectSet.psf
+put web/svn_commands
 put web/OpenJMLUserGuide.pdf
 cd openjml-updatesite
 put web/openjml-updatesite/index.html
