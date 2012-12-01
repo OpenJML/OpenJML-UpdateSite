@@ -3,8 +3,17 @@
 ## This updates http://jmlspecs.sourceforge.net/
 ## just the web pages, not the actual release files on the Eclipse update site
 
-
 cd `dirname $BASH_SOURCE`
-./publish < ./webfiles
+cd ..
+
+source web/setup
+
+if [ -z "$SFUSERNAME" ] ; then
+
+export SFUSERNAME=$USER
+
+fi
+
+cat - | sftp $SFUSERNAME,jmlspecs@web.sourceforge.net 
 
 
