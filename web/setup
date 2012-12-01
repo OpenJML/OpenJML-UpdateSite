@@ -14,6 +14,7 @@
 cd C:/cygwin/home/dcok/eprojects/OpenJML-UpdateSite
 cp ../../texstuff/papers/OpenJMLUserGuide/OpenJMLUserGuide.pdf web
 cp ../OpenJML/OpenJML-projectSet.psf web
+cp ../OpenJML/svn_commands web
 rm -f web/*.gz
 version=`ls -t features/* | head -1 | sed -e sxfeatures/org.jmlspecs.openjml.OpenJMLFeature_xx -e sx.jarxx`
 file=`ls -t ../OpenJML/*.tar.gz | head -1`
