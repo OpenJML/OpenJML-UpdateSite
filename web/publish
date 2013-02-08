@@ -8,12 +8,13 @@ cd ..
 
 source web/setup
 
-if [ -z "$SFUSERNAME" ] ; then
+if [ -z "$SOURCEFORGE_USERNAME" ] ; then
 
-export SFUSERNAME=$USER
+export SOURCEFORGE_USERNAME=$USER
 
 fi
 
-cat - | sftp $SFUSERNAME,jmlspecs@web.sourceforge.net 
+echo Version ${version}
+cat - | sed -e s/\$\{version\}/$version/ | sftp $SOURCEFORGE_USERNAME,jmlspecs@web.sourceforge.net 
 
 
