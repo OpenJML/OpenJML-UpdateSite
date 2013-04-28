@@ -1,0 +1,1312 @@
+<h1>OpenJML Features</h1>
+
+<p>
+These tables list the various features of JML and their status within OpenJML.
+<br><a href="#Tools">Tools</a>
+<br><a href="#Java">Java language elements</a>
+<br><a href="#JML">General JML features</a>
+<br><a href="#TypeSpecs">Types specifications</a>
+<br><a href="#MethodSpecs">Method specifications</a>
+<br><a href="#FieldSpecs">Field specifications</a>
+<br><a href="#JMLTypes">JML types</a>
+<br><a href="#JMLExpressions">JML expressions</a>
+<br><a href="#StoreRef">Store-ref expressions</a>
+<br><a href="#Statements">JML Statements</a>
+<br><a href="#Modifiers">Modifiers</a>
+<br><a href="#Extensions">OpenJML extensions to JML</a>
+<br><a href="#Deprecated">Deprecated syntax</a>
+<P>
+<B>Key:</B>
+<ul>
+<li> OK = implemented within OpenJML</li>
+<li> OK* = implemented with some restrictions</li>
+<li> -- = implemented with significant restrictions</li>
+<li> X = not or only partially implemented</li>
+<li> ? = definition of the feature is under discussion</li>
+</ul>
+<B>Level:</B> The level column gives the language level of the feature as defined in the JML Reference Manual.
+<ul>
+<li>0 = supported by a minimal tool</li>
+<li>1 = supported and used by most tools and specifications</li>
+<li>2 = generally useful but more specialized features</li>
+<li>3 = uncommonly used features</li>
+<li>C = features related to concurrency</li>
+<li>X = experimental features</li>
+<li>Z = extensions (not defined as even experimental for JML)</li>
+</ul>
+
+<!-- 
+Syntax: <code>//</code><B><FONT SIZE="+1">[[</FONT></B><code>+</code><B><FONT SIZE="+1">|</FONT></B><code>-</code><B><FONT SIZE="+1">]</FONT></B><I>&lt;ident&gt;</I><B><FONT SIZE="+1">]<sup>*</sup></FONT></B><code>@</code>
+-->
+
+<A NAME="Tools"/>
+<h3>Tools</h3>
+
+<table border="1">
+<tr>
+  <td bgcolor=#44FF44>Eclipse integration</td>
+  <td>Problem indication, source code browsing, auto static checking and runtime compilation, counterexample browsing are implemented; syntax coloring, JML_aware editing is in planning</td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44>static checking tool</td>
+  <td>See the feature status in the tables below</td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44>runtime assertion checking tool</td>
+  <td>See the feature status in the tables below</td>
+</tr>
+<tr>
+  <td bgcolor=#FF4444>jmldoc tool</td>
+  <td>Planned - specifications shown for all Java elements; needs implementation of model methods and model classes</td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44>Test suite generation</td>
+  <td><a href="http://formalmethods.insttech.washington.edu/software/jmlunitng/">See JMLUnitNG</a></td>
+</tr>
+<tr>
+  <td bgcolor=#FF4444>high-coverage test case generation</td>
+  <td>Planned</td>
+</tr>
+<tr>
+  <td bgcolor=#FF4444>specification discovery</td>
+  <td>Planned</td>
+</tr>
+<tr>
+  <td bgcolor=#FF4444>.jml template generation</td>
+  <td>Planned</td>
+</tr>
+<tr>
+  <td bgcolor=#FF4444>multi-threaded checking</td>
+  <td>Planned</td>
+</tr>
+<tr>
+  <td bgcolor=#FF4444>specification checking using method inlining</td>
+  <td>Planned</td>
+</tr>
+</table>
+
+<A NAME="Java"/>
+<h3>Java language elements</h3>
+Except where indicated, all Java language elements through Java 7 are parsed, typechecked and compiled in RAC.
+Some elements are not modeled by OpenJML logic or have the corresponding checks inserted in RAC
+<ul>
+<li>Java through Java 4: All features are modeled and checked except
+<ul>
+<li><font style="background-color:#FF4444">Enum classes</font>
+<li><font style="background-color:#FF4444">The synchronized modifier</font>
+<li><font style="background-color:#FF4444">The strictfp modifier</font>
+<li><font style="background-color:#FF4444">The volatile, transient, native modifiers</font>
+</ul>
+<li>Java 5:
+<ul>
+<li><font style="background-color:#FFFF44">Generic types : partially modeled by ESC.</font>
+<li><font style="background-color:#FFFF44">Enhanced for loop: Modeled and checked using JML's loop annotations</font>
+<li><font style="background-color:#FF4444">Autoboxing/unboxing: </font></li>
+<li><font style="background-color:#FF4444">Typesafe enums : enums are not modeled by ESC; they are compiled but not checked by RAC</font>
+<li><font style="background-color:#44FF44">Static import : OK</font> <font style="background-color:#FFFF44">( but JML model imports are treated just like Java imports)</font>
+<li><font style="background-color:#FF4444">Varargs : Not yet modeled or checked</font></li>
+<li><font style="background-color:#FF4444">Java annotations : No checks on annotations are modeled by ESC or compiled by RAC</font>.
+</ul>
+<li>Java 6: No language changes
+
+<li>Java 7:
+<ul>
+<li><font style="background-color:#44FF44">binary literals: Implemented</font></li>
+<li><font style="background-color:#44FF44">literals with underscores: Implemented</font></li>
+<li><font style="background-color:#FF4444">Strings in switch statements: NOT modeled or checked</font></li>
+<li><font style="background-color:#FF4444">try with resources: NOT modeled or checked</font></li>
+<li><font style="background-color:#FF4444">Catching multiple exception types: NOT modeled or checked</font></li>
+<li><font style="background-color:#FF4444">Type inference: NOT implemented</font></li>
+<li><font style="background-color:#FF4444">Runtime errors associated with varargs parameter lists: NOT implemented</font></li>
+</ul>
+<li>Java 8: (OpenJML is only implemented at present for Java through Java 7)
+<ul>
+<li><font style="background-color:#FF4444">lambda expressions</font></li>
+<li><font style="background-color:#FF4444">enhancements to annotations (including JSR308)</font></li>
+</ul>
+
+
+<a name="JML"/>
+<h3>General JML features for ESC and RAC</h3>
+<table border="1">
+<tr>
+  <td></td>
+  <td>Level</td>
+  <td>Parser</td>
+  <td>Type Checker</td>
+  <td>Static Checker</td>
+  <td>Runtime Checker</td>
+  <td>Comments</td>
+</tr>
+<tr>
+  <td>JML annotation comments</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Optional JML annotations (e.g. //+ESC@ )</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>model imports</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>Model imports are treated just like regular Java imports</td>
+</tr>
+<tr>
+  <td>nowarn annotations</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>JML modifiers as Java annotations (e.g. @NonNull) </td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Specification files (.jml)</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td bgcolor=#FFFF44>The search algorithm for specification files is not standardized</td>
+</tr>
+<tr>
+  <td>Specifications in class files (via JIR or BML)</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#FF4444>OK</td>
+  <td align=center bgcolor=#FF4444>OK</td>
+  <td align=center bgcolor=#FF4444>OK</td>
+  <td align=center bgcolor=#FF4444>OK</td>
+  <td>Not yet implemented.</td>
+</tr>
+<tr>
+  <td>Library specifications</td>
+  <td align=center>0?</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>Library specifications are read and used by ESC, but not by RAC;
+many JDK library specifications must still be written. The library specs use some level 1 features and could reasonably use level C features.</td>
+</tr>
+<tr>
+  <td>field, method, constructor keywords</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>These keywords are simply parsed and ignored</td>
+</tr>
+<tr>
+  <td>\not_specified</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>OpenJML treats a specification clause using \not_specified the same as if the clause were not present.</td>
+</tr>
+<tr>
+  <td>Synonyms</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>All JML keyword synonyms are implemented (e.g. exsures, pre, post, assignable vs. modifiable, behaviour vs. behavior)</td>
+</tr>
+<tr>
+  <td>*_redundantly keywords</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>--</td>
+  <td align=center bgcolor=#FFFF44>--</td>
+  <td>Keywords ending in _redundantly are treated just like the corresponding non-redundant keyword; ideally they are handled differently by ESC or can be separately disabled in RAC</td>
+</tr>
+<tr>
+  <td>Java or JML comments embedded in JML comments</td>
+  <td align=center bgcolor=#FFFF44>Z?</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>It is under discussion whether embedded comments are legal syntax.</td>
+</tr>
+</table>
+
+
+<a NAME="TypeSpecs"/>
+<h3>Type specifications</h3>
+<table border="1">
+<tr>
+  <td></td>
+  <td>Level</td>
+  <td>Parser</td>
+  <td>Type Checker</td>
+  <td>Static Checker</td>
+  <td>Runtime Checker</td>
+  <td>Comments</td>
+</tr>
+<tr>
+  <td>ghost fields</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>model fields</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>Model fields have tricky semantics in ESC; RAC implements model fields incompletely for inherited fields and represents clauses</td>
+</tr>
+<tr>
+  <td>model methods</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>model classes and interfaces</td>
+  <td align=center>3</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>invariant</td>
+  <td align=center>0,1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>instance invariants are Level 0; static invariants are level 1</td>
+</tr>
+
+<tr>
+  <td>constraint</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>The optional 'for' suffix of constraint clauses is not checked</td>
+</tr>
+
+<tr>
+  <td>represents</td>
+  <td align=center>0,2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>Functional represents clauses are level 0; \such_that clauses are level 2; RAC needs implementation for multiple or inherited represents clauses</td>
+</tr>
+
+<tr>
+  <td>axiom</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>OK</td>
+  <td align=center bgcolor=#44FF44>N/A</td>
+  <td>When checking a method, axioms are included for all classes mentioned in the body of the method.</td>
+</tr>
+
+<tr>
+  <td>initially</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>initializer, static_initializer</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+</table>
+
+<A NAME="MethodSpecs"/>
+<h3>Method specifications</h3>
+<table border="1">
+<TR>
+  <td></td>
+  <td>Level</td>
+  <td>Parser</td>
+  <td>Type Checker</td>
+  <td>Static Checker</td>
+  <td>Runtime Checker</td>
+  <td>Comments</td>
+</tr>
+<tr>
+  <td>inherited specifications</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>lightweight specifications</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>heavyweight specifications</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>implies_that specifications</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>parsed, checked, and ignored</td>
+</tr>
+<tr>
+  <td>for_example specifications</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>parsed, checked, and ignored</td>
+</tr>
+<tr>
+  <td>model programs</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>parsed, checked, and ignored</td>
+</tr>
+<tr>
+  <td><tt>code</tt> modifier</td>
+  <td align=center>3</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>parsed, checked, and ignored</td>
+</tr>
+<tr>
+  <td>requires</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>ensures</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>signals</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>signals_only</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>Some outstanding implementation issues with default clauses</td>
+</tr>
+<tr>
+  <td>modifies,assignable,modifiable</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>diverges</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>forall, old</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>callable</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>accessible</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>captures</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>when</td>
+  <td align=center>C</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>measured_by</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>duration, working_space</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>choose, choose_if</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>model program continues, breaks, returns statements</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>Optional labels on these statements is not parsed.</td>
+</tr>
+</table>
+
+<A NAME="FieldSpecs"/>
+<h3>Field specifications</h3>
+<table border="1">
+<TR>
+  <td></td>
+  <td>Level</td>
+  <td>Parser</td>
+  <td>Type Checker</td>
+  <td>Static Checker</td>
+  <td>Runtime Checker</td>
+  <td>Comments</td>
+</tr>
+<tr>
+  <td>in</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>maps</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>readable, writable</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>monitors_for</td>
+  <td align=center>C</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+</table>
+
+<A NAME="JMLTypes"/>
+<h3>JML types</h3>
+<table border="1">
+<TR>
+  <td></td>
+  <td>Level</td>
+  <td>Parser</td>
+  <td>Type Checker</td>
+  <td>Static Checker</td>
+  <td>Runtime Checker</td>
+  <td>Comments</td>
+</tr>
+<tr>
+  <td>\TYPE</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>There is some cleanup to be done of the semantics and implementation of \TYPE in conjunction with Java generics</td>
+</tr>
+<tr>
+  <td>\bigint</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\real</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+</table>
+
+<A NAME="JMLExpressions"/>
+<h3>JML expressions</h3>
+<table border="1">
+<TR>
+  <td></td>
+  <td>Level</td>
+  <td>Parser</td>
+  <td>Type Checker</td>
+  <td>Static Checker</td>
+  <td>Runtime Checker</td>
+  <td>Comments</td>
+</tr>
+<tr>
+  <td>==&gt; &lt;== &lt;==&gt; &lt;=!=&gt; operators</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>&lt;: operator</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>&lt;# &lt;=# operators</td>
+  <td align=center>C</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>These are lock-ordering operators</td>
+</tr>
+<tr>
+  <td>pure method calls in specification expressions</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>No recursion allowed, currently</td>
+</tr>
+<tr>
+  <td>\result</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\old, \pre</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td bgcolor=#FFFF44>There are on-going discussions about the semantics of cross-state comparisons</td>
+</tr>
+<tr>
+  <td>\fresh</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\nonnullelements</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\elemtype</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\typeof</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\type</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\lblneg, \lblpos</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#FFFF44>\lbl</td>
+  <td align=center>Z</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>\lbl is an extension</td>
+</tr>
+<tr>
+  <td>Quantified expressions: \forall, \exists</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>RAC is implemented for expressions with just one declaration; not all provers handle quantification</td>
+</tr>
+<tr>
+  <td>Quantified expressions: \num_of, \sum, \product, \max, \min</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>RAC is implemented for expressions with just one declaration; proposed extensions not yet implemented</td>
+</tr>
+<tr>
+  <td>Set comprehension</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td bgcolor=#FFFF44>There are outstanding issues regarding this feature</td>
+</tr>
+<tr>
+  <td>\not_modified</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\not_assigned, \only_accessed<br>
+\only_assigned, \only_called, \only_captured</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\reach</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\is_initialized</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\invariant_for</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\duration, \space, \working_space</td>
+  <td align=center>3</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\lockset, \max</td>
+  <td align=center>C</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\same</td>
+  <td align=center>3</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td bgcolor=#FFFF44>semantics needs clarification</td>
+</tr>
+<tr>
+  <td bgcolor=#FFFF44>\index, \values</td>
+  <td align=center>Z</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td bgcolor=#FFFF44>Extensions to specify for-each loops</td>
+</tr>
+<tr>
+  <td>\peer, \rep, \readonly</td>
+  <td align=center>0,X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>\warn_op, \warn, \nowarn_op, \nowarn</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>Parsed, but treated as a no-op</td>
+</tr>
+<tr>
+  <td>\java_math, \safe_math, \bigint_math</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>Parsed and ignored (treated as a no-op)</td>
+</tr>
+<tr>
+  <td>Informal expression</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>The (* *) form is translated to true; the proposed functional form is not implemented.</td>
+</tr>
+<tr>
+  <td>Let expression</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#FF4444>OK*</td>
+  <td align=center bgcolor=#FF4444>OK*</td>
+  <td align=center bgcolor=#FF4444>OK*</td>
+  <td align=center bgcolor=#FF4444>OK*</td>
+  <td>The let expression, introduced at Dagstuhl in 2009, is not yet implemented.</td>
+</tr>
+</table>
+
+<a NAME="StoreRef"/>
+<h3>Store-ref expressions</h3>
+<table border="1">
+<tr>
+  <td></td>
+  <td>Level</td>
+  <td>Parser</td>
+  <td>Type Checker</td>
+  <td>Static Checker</td>
+  <td>Runtime Checker</td>
+  <td>Comments</td>
+</tr>
+<tr>
+  <td>\nothing, \everything</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>x, o.f, o.*, T.f, T.*, a[i] syntax</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#FFFF44>a[1..2], a[1..], a[*] syntax</td>
+  <td align=center>Z</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+</table>
+
+<A NAME="Statements"/>
+<h3>JML statements</h3>
+<table border="1">
+<TR>
+  <td></td>
+  <td>Level</td>
+  <td>Parser</td>
+  <td>Type Checker</td>
+  <td>Static Checker</td>
+  <td>Runtime Checker</td>
+  <td>Comments</td>
+</tr>
+<tr>
+  <td>specifications on local Java class declarations</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>The specs are checked to the extent they are on other declarations</td>
+</tr>
+<tr>
+  <td>specifications on anonymous class declarations</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>The specs are checked to the extent they are on other declarations</td>
+</tr>
+<tr>
+  <td>ghost variable declarations</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>assert statement</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>assume statement</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>set statement</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td bgcolor=#FFFF44>Need to clarify the permitted syntax</td>
+</tr>
+<tr>
+  <td>debug statement</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td bgcolor=#FFFF44>Still need a mechanism to turn these off and on; also clairfy the permitted syntax</td>
+</tr>
+<tr>
+  <td>loop_invariant</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+<tr>
+  <td>decreases</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>refining</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>unreachable</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>hence_by</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+</table>
+
+<A NAME="Modifiers"/>
+<h3>Modifiers on JML declarations</h3>
+Modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java form(e.g. @org.jmlspecs.org.Pure).
+<table border="1">
+<TR>
+  <td></td>
+  <td>Level</td>
+  <td>Parser</td>
+  <td>Type Checker</td>
+  <td>Static Checker</td>
+  <td>Runtime Checker</td>
+  <td>Comments</td>
+</tr>
+<tr>
+  <td>public, protected, private</td>
+  <td align=center>0?</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>visibility modifications on specification clauses are ignored by OpenJML</td>
+</tr>
+<tr>
+  <td>spec_public, spec_protected</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>privacy restrictions on specification clauses are currently ignored by OpenJML</td>
+</tr>
+<tr>
+  <td>instance, static on interface declarations</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td bgcolor=#FFFF44>is instance allowed anywhere?</td>
+</tr>
+<tr>
+  <td>helper</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td bgcolor=#FFFF44>Ongoing discussion about the semantics of the helper modifier and the allowed visibility modifiers</td>
+</tr>
+<tr>
+  <td>ghost, model</td>
+  <td align=center></td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>pure</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>Pure is implemented but is too strong to be useful; see secret and query</td>
+</tr>
+<tr>
+  <td>monitored</td>
+  <td align=center>C</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>uninitialized</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#FFFF44>query, secret</td>
+  <td align=center>Z</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>Extension</td>
+</tr>
+<tr>
+  <td>code_bigint_math, code_java_math, code_safe_math,<br>
+spec_bigint_math, spec_java_math, spec_safe_math</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>non_null, nullable</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>nullable_by_default</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td bgcolor=#FFFF44>This one or its complement is an extension</td>
+</tr>
+<tr>
+  <td>non_null_by_default</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td bgcolor=#FFFF44>This one or its complement is an extension</td>
+</tr>
+<tr>
+  <td>Universe types: peer, rep, \peer, \rep</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>Universe annotations are parsed and ignored</td>
+</tr>
+<tr>
+  <td>Universe types: readonly, \readonly</td>
+  <td align=center>X</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td>Universe annotations are parsed and ignored</td>
+</tr>
+<tr>
+  <td>extract</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK?</td>
+  <td align=center bgcolor=#FF4444>X?</td>
+  <td align=center bgcolor=#FF4444>X?</td>
+  <td align=center bgcolor=#FF4444>X?</td>
+  <td>Insufficiently defined in the reference manual</td>
+</tr>
+</table>
+  
+<A NAME="Extensions"/>
+<h3>OpenJML extensions to JML</h3>
+<ul>
+<li>The \lbl expression</li>
+<li>The \values and \index expressions (used with for-each loops)</li>
+<li>Flexibility in writing method specifications? Optional 'also'? an else?</li>
+<li>Query and Secret annotations</li>
+<li>The use of Java or JML comments within JML comments</li>
+<li>Predefined ESC and RAC and DOC and DEBUG annotation keys.</li>
+<li>Predefined JAVA4 JAVA5 JAVA6 JAVA7 annotation keys.</li>
+</ul>
+
+<!-- Undefinedness checks -->
+<!-- Have not defined how to warn about undeclared exceptions -->
+<!-- Are casts properly handled in ESC? -->
+<!-- Value of \max and \min quantified statements when the range is empty -->
+<!-- Proposals regarding the set-comprehension expression -->
+<!-- Interpretation of cross-state comparisons -->
+<!-- JSR308 -->
+<!-- Rules about splitting JML across JML line comments -->
+
+<a NAME="Deprecated"/>
+<h3>Deprecated syntax</h3>
+<ul>
+<li>The refine and refines statements; Specifications contained in files with suffixes other than .jml and .java; in addition, the algorithm for finding specification files has changed.</li>
+<li>The mechanism for specifying optional annotations has changed; //+@, /*+@, //-@ and /*-@ are all deprecated in JML. OpenJML ignores //-@ and /*-@ comments and accepts //+@ and /*+@ comments for now because there are such comments in the library specifications, since ESC Java uses them.</li>
+<li>The &lt;- form of the represents clause is deprecated, though it is still supported by OpenJML. (CHECK?)</li>
+<li>JML annotations within Javadoc comments are not supported by OpenJML; they are or will soon be deprecated by JML.</li>
+</ul>
+
+

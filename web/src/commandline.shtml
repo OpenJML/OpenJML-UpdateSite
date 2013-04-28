@@ -1,0 +1,75 @@
+
+<h2>Using the command-line tool</h2>
+
+<h3>Basic example</h3>
+
+OpenJML can be invoked as a command in a command-shell environment. It presumes that Java 1.7 and the
+<code>java</code> command are available. The basic form is standard:<BR>
+<center><code>java -jar openjml.jar</code> <em>options files directories</em></center><BR>
+The options, files and directories may be intermingled. The files are listed just as they would be in a java compilation command; they may include .java and .jml files. Giving a directory name is equivalent to listing all .java and .jml files within the directory and its subdirectories.
+
+The <code>openjml.jar</code> library need not be in the current working directory (as in the example above). You may give a relative or absolute path to the library instead.
+
+You may also use the usual, but more verbose form:<BR>
+<center><code>java -cp openjml.jar org.jmlspecs.openjml.Main</code> <em>options files directories</em></center>
+
+<h3>Using directory paths</h3>
+
+... TBD...
+
+<h3>Command-line options</h3>
+
+The commandline options follow the style of the Java compiler in beginning with a single hyphen.
+
+Options that take a parameter may either use an = with no white space or provide the argument as the subsequent entry of the command. For example, either <code>--racbin=output</code> or
+<code>--racbin output</code> is permitted. The the argument is optional but present, the = form must be used.
+
+Options that are boolean in nature sometimes have two forms that turn the option off and on. Alternately, you can use <code>true</code> or <code>false</code> as arguments.
+
+<h4>Informational options</h4>
+<UL>
+<LI><B>-help</B>: gives information about the command-line options and precludes any other activities
+<LI><B>-version</B>: gives the version of this OpenJML library and precludes any other activities
+</UL>
+
+<h4>Relevant Java compiler options</h4>
+All the OpenJDK compiler options apply to OpenJML as well. The most commonly used are listed here.
+<UL>
+<LI><B>-cp</B> or <B>-classpath</B>: the parameter gives the classpath to use to find unnamed but referenced classes
+<LI><B>-sourcepath</B>: the parameter gives the sequence of directories in which to find source files for unnamed but referenced classes
+<LI> -verbose, -d, -Werror, @filename, -source, -deprecation, -nowarn
+
+</UL>
+
+<h4>General options</h4>
+<UL>
+<LI><B>-java</B>: processes the command-line options and files using only OpenJDK functionality. No OpenJML functionality is invoked.
+<LI><B>-noJML</b>: uses the OpenJML implementation to type-check and possibly compile the listed files, but ignores all JML annotations in those files.
+<LI><B>-dir</B>: Indicates that its argument is a directory. All the .java and .jml files in the directory and its subdirectories are processed.
+<LI><B>-dirs</B>: Indicates that all subsequent command-line arguments are directories, to be processed as for <code>-dir</code>, until an argument is reached that begins with a hyphen. 
+
+<LI><B>-specspath</B>: the parameter gives the sequence of directories in which to find .jml specification files for unnamed but referenced classes
+
+</UL>
+
+<h4>Options applicable to all JML tasks</h4>
+<UL>
+<LI><B>-keys</B>: ...
+</UL>
+
+<h4>Options specific to static checking</h4>
+
+<h4>Options specific to runtime checking</h4>
+<UL>
+<LI>
+</UL>
+
+<h4>Options that control output</h4>
+<UL>
+<LI><B>-quiet</B>: turns off all output except errors and warnings. Equivalent to <code>--verboseneness=0</code>
+<LI><B>-normal</B>: quiet output plus a modest amount of informational and progress output. Equivalent to <code>--verboseneness=1</code>
+<LI><B>-progress</B>: normal output plus output about progress through the phases of activity and the files being processed. Equivalent to <code>--verboseneness=2</code>
+<LI><B>-jmlverbose</B>: progress output plus a verbose amount of output about the phases of activity and the files being processed. Equivalent to <code>--verboseneness=3</code>
+<LI><B>-jmldebug</B>: output useful only for detailed debugging (includes the jmlverbvose output). Equivalent to <code>--verboseneness=4</code>
+
+</UL>

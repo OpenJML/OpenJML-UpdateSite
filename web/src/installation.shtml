@@ -1,0 +1,315 @@
+
+<h2><center>OpenJML Installation and Execution</center></h2>
+<p>
+OpenJML is a tool for working with logical annotations in Java programs. It
+enables static or run-time checking of the validity of the annotations; it also
+provides an enhanced version of javadoc that includes the annotations in the
+javadoc documentation.
+</p>
+<p>
+The functionality is available 
+<ul>
+<li>as a command-line tool to do type-checking, static checking or runtime checking,</li>
+<li>as an Eclipse plug-in to perform those tasks, and</li>
+<li>programmatically from a user's Java program</li>
+</ul>
+</p>
+
+<a href="#installation">Installation</A><br/>
+<a href="#Execution">Execution</A><br/>
+<a href="#Eclipse">OpenJML in Eclipse</A>
+
+<a name="installation"/>
+<h2>Installation</h2>
+
+<p>
+To install the <B>command-line tool</B>, complete these steps:
+<ul>
+<li>download the zipped package from <A HREF="openjml.tar.gz">here</A>. Unzip and untar it into a folder of your choice.</li>
+<li>For static checking, you will need an SMT solver. Make a choice from the
+list <a href="#SMT">below</a>, and install it according to its instructions.</li>
+</ul> 
+
+To install the <B>Eclipse plug-in</B>, use the Eclipse mechanism for installing
+plug-ins from an update site. Use this URL for the update site: 
+<code>http://jmlspecs.sourceforge.net/openjml-updatesite</code>.
+The plug-in works with Eclipse 4.2.1.
+
+Before performing static checking with the plug-in, you need to open the 
+OpenJML Solvers preference page, set a default prover (yices2 or z3_4_3),
+and enter the absolute path on your system to the prover executable.
+</p>
+
+<a name="SMT"/>
+<h2>SMT provers</h2>
+In general, OpenJML can use any SMT-LIBv2-compliant
+solver, but since tools vary in their SMT-compliance and their support for various logics, 
+adapter code is often needed. OpenJML has been tested with 
+<ul>
+<li><a href="http://z3.codeplex.com/">Z3</a> (version 4.3) on Windows</li>
+<li><a href="http://yices.csl.sri.com/">Yices</a> (version 2.1) on Windows or Mac OSX</li>
+<li>(Linux platforms may well work but have not been tested.)</li>
+</ul>
+(Note that Yices does not yet handle quantified 
+statements, such as you might use to specify axioms.)
+
+<a name="Execution"/>
+<h2>Execution</h2>
+
+<p>
+To execute OpenJML, you need
+<ul>
+<li>An appropriate Java VM: Java 7</li>
+<li>A copy of the OpenJML release. The release
+contains the openjml.jar, jmlspecs.jar, and jmlruntime.jar files.
+The release may be installed anywhere you like.</li>
+<li>For static checking, an appropriate SMT solver.</li>
+</ul>
+</p>
+
+<h3>Type-checking</h3>
+
+<p>
+The OpenJML tool operates like a Java compiler, on a set of files.  For example, the command
+
+<div style="background-color:lightblue">
+<code> <br>
+java -jar openjml.jar -noPurityCheck A.java
+<br><br> </code>
+</div>
+will type-check the Java and JML in the A.java file and any classes on which it depends.
+Include the full absolute or relative path to the openjml.jar file as needed.
+(The <code>-noPurityCheck</code> option suppresses many warnings about the use of non-pure functions, since the JDK libraries are not yet populated with appropriate pure annotations.)
+<p>
+For example, put the following text in a file named <code>A.java</code> and execute the command above. 
+<div style="background-color:lightblue">
+<code> <pre>
+public class A {
+
+  //@ ensures \result == true;
+  public void m() {}
+
+}
+</pre> </code>
+</div>
+
+The following output is obtained:
+<div style="background-color:lightblue">
+<code> <pre>
+A.java:3: A \result expression may not be used in the specification of a method that returns void
+  //@ ensures \result == true;
+               ^
+1 error
+</pre> </code>
+</div>
+
+There are a few important topics for the user to know:
+<ul>
+<li><a href="#FindingFiles">How source files, class files, and specification files are found</a></li>
+<li><a href="#Options">Command-line options</a></li>
+<li><a href="#Checks">The set of checks the tools perform</a></li>
+</ul>
+These topics are discussed below or at the indicated links.
+
+
+<h3>Static checking</h3>
+<P>
+To perform static checking of the JML specifications you will need an SMT solver 
+to determine logical satisfiability. See the installation instructions and the list
+of provers above and select one or more to install on your system.
+</P>
+<P>
+To run the static checker, us a command-line like the following, substituting 
+the path to the (in this case Z3) executable in your system. If you are using
+yices, substitute "yices2" for "z3_4_3".
+<div style="background-color:lightblue">
+<code> <br>
+java -jar openjml.jar -esc -prover z3_4_3 -exec <em>path-to-executable</em> -noPurityCheck B.java
+<br><br> </code>
+</P>
+</div>
+<p>
+For example, place the following text in the file <code>B.java</code> and execute the command above.
+<div style="background-color:lightblue">
+<code> <pre>
+public class B {
+
+  static int j,k;
+
+  //@ requires i >= 0;
+  //@ modifies j;
+  //@ ensures j == i;
+  public static void setj(int i) {
+    k = i;
+  }
+
+  //@ ensures j == 1;
+  public static void main(String[] args) {
+    setj(3);
+  }
+
+}
+</pre> </code>
+</div>
+<p>
+The following output is produced:
+<div style="background-color:lightblue">
+<code> <pre>
+B.java:9: warning: The prover cannot establish an assertion (Assignable) in method setj
+    k = i;
+      ^
+B.java:6: warning: Associated declaration
+  //@ modifies j;
+      ^
+B.java:13: warning: The prover cannot establish an assertion (Postcondition) in method main
+  public static void main(String[] args) {
+                     ^
+B.java:12: warning: Associated declaration
+  //@ ensures j == 1;
+      ^
+4 warnings
+</pre> </code>
+</div>
+<p>
+<ul>
+<li>The first two warnings point out that the specification of the method <code>setj</code> states that the field <code>j</code> (and nothing else) is modified by the method, but the method actually modifies <code>k</code>.
+<li>The second pair of warnings points out the call of <code>setj</code> in method <code>main</code> does not satisfy the postcondition; the "Associated declaration" warning that follows indicates the violated postcondition.
+<li></li>
+</ul>
+
+<h3>Runtime assertion checking</h3>
+To compile the JML specifications in the given files and in any files that they reference as assertions to be checked at runtime, use the -rac option:
+<div style="background-color:lightblue">
+<code> <br> 
+java -jar openjml.jar -rac -noPurityCheck B.java
+<br><br> </code>
+</div>
+<p>
+Then execute this command (the jmlruntime.jar is part of the OpenJML installation -- include the full path to that library as needed)
+<div style="background-color:lightblue">
+<code> <pre>
+
+java -classpath ".;jmlruntime.jar" B
+
+</pre> </code>
+</div>
+<p>
+
+The following output is produced:
+<div style="background-color:lightblue">
+<code> <pre>
+B.java:9: JML An item is assigned that is not in the assignable statement
+    k = i;
+      ^
+B.java:6: Associated declaration
+  //@ modifies j;
+      ^
+B.java:8: JML postcondition is false
+  public static void setj(int i) {
+                     ^
+B.java:7: Associated declaration
+  //@ ensures j == i;
+      ^
+B.java:14: JML postcondition is false
+    setj(3);
+        ^
+B.java:7: Associated declaration
+  //@ ensures j == i;
+      ^
+B.java:13: JML postcondition is false
+  public static void main(String[] args) {
+                     ^
+B.java:12: Associated declaration
+  //@ ensures j == 1;
+      ^
+</pre> </code>
+</div>
+Here you see a postcondition failure reported both by setj, which checks the postconditions on exit, and by main, which checks the postconditions of methods it calls when they return.
+In addition, the postcondition of main fails when main itself exits.
+<p>
+
+<!-- 
+<h3>Producing documentation</h3>
+To produce javadoc files with JML specifications inserted, use the following command:
+<div style="background-color:lightblue">
+<code> <br> 
+java -jar openjml.jar -doc -noPurityCheck </code><i>files-or-packages</i>
+<br><br> </code>
+</div>
+ -->
+ 
+<A name="#FindingFiles"/>
+<h3>Finding source, class and specification files</h3>
+When a Java compiler compiles source files, it considers three types of files:
+<ul>
+<li>Source files listed on the command-line
+<li>Other source files referenced by those listed on the command-line, but not on the command-line themselves
+<li>Already-compiled class files
+</ul>
+The OpenJML tool considers the same files, but also needs
+<ul>
+<li>Specification files associated with classes in the program
+</ul>
+
+The OpenJML tool behaves in a way similar to a typical compiler, 
+making use of three directory paths - the classpath, the sourcepath, and the specspath.  
+These paths are standard lists of directories or jar files, 
+separated either by colons (Unix) or semicolons (Windows).  
+Java packages are subdirectories of these directories.
+<ul>
+<li><code>classpath</code>: The OpenJML classpath is set using one of these alternatives, in priority order:
+<ul>
+<li>As the argument to the OpenJML command-line option <code>-classpath</code>.
+<li>As the value of the Java property <code>org.jmlspecs.openjml.classpath</code>
+<li>As the value of the system environment variable <code>CLASSPATH</code>
+</ul>
+<li><code>sourcepath</code>: The OpenJML sourcepath is set using one of these alternatives, in priority order:
+<ul>
+<li>As the argument of the OpenJML command-line option <code>-sourcepath</code>
+<li>As the value of the Java property <code>org.jmlspecs.openjml.sourcepath</code>
+<li>As the value of the OpenJML classpath (as determined above).
+</ul>
+<li><code>specspath</code>: The OpenJML specifications path is set using one of these alternatives, in priority order:
+<ul>
+<li>As the argument of the OpenJML command-line option <code>-specspath</code>
+<li>As the value of the Java property <code>org.jmlspecs.openjml.specspath</code>
+<li>As the value of the OpenJML sourcepath (as determined above).
+</ul>
+</ul>
+Note that with no command-line options or Java properties set, the result is simply that the system CLASSPATH is used for all of these paths. A common practice is to simply use a single directory path, specified on the command-line using <code>-classpath</code>, for all three paths.
+<p>
+The paths are used as follows to find relevant files:
+
+<ul>
+<li>Files listed on the command-line are found directly in the file system. If the command-line element is an absolute path to a <code>.java</code> file, it is looked up in the file system as an absolute path; if the command-line element is a relative path, the file is found relative to the current working directory.
+<li>Classes that are referenced by files on the command-line or transitively by other classes in the program, can be found in one of two ways:
+<ul>
+<li>The source file for the class is sought as a sub-file of an element of the <code>sourcepath</code>.
+<li>The class file for the class is sought as a sub-file of an element of the <code>classpath</code>.
+</ul>
+If there is both a sourcefile and a classfile present, then TBD.
+<li>The OpenJML tool also looks for a specification file for each source or 
+class file used in the program. The specification file is a Java-like file that 
+has a <code>.jml</code> suffix, but otherwise has the same name and Java package 
+as the class that it specifies. The specification file used is the first file 
+with the correct name and package found in the sequence of directories and jar 
+files that make up the specspath. 
+If no such specification file is found, any specifications in 
+the <code>.java</code> source file are used 
+(as found on the command-line or on the sourcepath).
+(TBD: what if the file on the command-line is not in the sourcepath?)
+</ul>
+
+</ul>
+
+
+<a name="Eclipse"/>
+<h2>OpenJML as an Eclipse Plugin</h2>
+
+
+<A name="#Options"></A>
+<h2>Command-line options for OpenJML</h2>
+
+<A name="#Checks"></A>
+<h2>Checks performed by OpenJML</h2>
+
