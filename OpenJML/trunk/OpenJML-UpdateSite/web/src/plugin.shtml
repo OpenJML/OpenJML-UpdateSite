@@ -1,0 +1,45 @@
+
+<h2>Eclipse plug-in for OpenJML</h2>
+
+<h3>Installing</h3>
+<p>
+OpenJML provides a standard Eclipse plug-in update site at
+<A HREF="openjml-updatesite">http://jmlspecs.sourceforge.net/openjml-updatesite</A>.
+The plug-in is tested with Eclipse 4.2 (Juno). The installation procedure is standard for Eclipse:
+<UL>
+<LI>Select the menu option <code>Help >> Install New Software</code>
+<LI>Click <code>Add...</code>
+<LI>Enter <code>OpenJML</code> as the Name and the URL given above as the Location, and press <code>OK</code>.
+<LI>Select the most recent version of OpenJML from the list, and press <code>Next</code>
+<LI>Review your selections and press <code>Next</code>
+<LI>Read and accept the license agreements and press <code>Finish</code>
+</UL>
+These instructions may vary slightly on other Eclipse versions or on MacOS platforms.
+<p>
+<h3>Features</h3>
+<h4>Menubar and toolbar items</h4>
+The Menubar and toolbar contain these additional items:
+<UL>
+<LI>The <code>JML</code> menubar entry with its submenu items.
+<LI>A toolbar ittem marked by the JML logo (a yellow coffee cup), which initiates type-checking of a Java or JML file.
+<LI>A toolbar item marked <code>ESC</code>, which initiates static checking of selected files, classes or methods.
+<LI>A toolbar item marked <code>RAC</code>, which initiates compilation for runtime assertion checking.
+</UL>
+The JML sub-menu items are the following:
+<UL>
+<LI>
+</UL>
+
+<h4>JML editor</h4>
+
+<h4>JML problem markers</h4>
+
+<h4>File association for .jml files</h4>
+
+<h4>Preferences</h4>
+
+<h4>Commands and key associations</h4>
+
+<h4>Eclipse help</h4>
+
+

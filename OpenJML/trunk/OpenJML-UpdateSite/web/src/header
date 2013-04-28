@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <link href="style.css" rel="STYLESHEET" type="text/css" />
+    <meta name="description" content="OpenJML, a verifier for the Java Modeling Language (JML)" />
+
+
+    <!-- customize the page title -->
+    <title>OpenJML User Guide and Reference</title>
+    <!-- end customized page title -->
+    </head>
+
+<body>
+  
+<div id="menu">
+<table>
+<tr>
+<td class="logo">
+<img class="center" src="jml-logo-small64.png" alt="JML Logo" />
+</td>
+</tr>
+</table>
+<br>
+<br>
+<p><a href="index.html">Home</a></p>
+
+<p class="title">Guide to Use</p>
+<p><a href="onlinemanual.shtml">Introduction</a></p>
+<p><a href="installation.shtml">Obtaining OpenJML</a></p>
+<p><a href="commandline.shtml">Command-line tool</a></p>
+<p><a href="plugin.shtml">Eclipse plug-in</a></p>
+<p><a href="contact.shtml">Contact</a></p>
+
+<p class="title">For Developers</p>
+
+<p><a href="http://sourceforge.net/projects/jmlspecs">Sourceforge project</a>
+<a href="http://sourceforge.net/projects/jmlspecs"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=65346&amp;type=13" width="120" height="30" alt="Get Java Modeling Language (JML) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+</p>
+<p><a href="http://sourceforge.net/apps/trac/jmlspecs/">Wiki</a></p>
+
+<p class="title">OpenJML Reference</p>
+
+<p><a href="checks.shtml">Java and JML checks</a></p>
+<p><a href="features.shtml">Implementation status</a></p>
+
+
+<p class="title">Valid</p>
+<p><a href="http://validator.w3.org/check/referer">XHTML 1.0</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS2</a></p>
+
+</div>
+
+  
+<div id="rest">  
+
+<div id="banner">
+ <h1><a name="top">OpenJML - a checker for the Java Modeling Language
+     (<span style="color:#006000">J</span><span style="color:#a00000">M</span><span style="color:#000090">L</span>)
+      </a>
+    </h1>
+</div>
+
+
+<div id="content">
+
+    <!-- content goes here -->
+

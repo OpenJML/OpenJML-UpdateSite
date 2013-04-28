@@ -1,0 +1,56 @@
+
+<h2>Introduction to OpenJML</h2>
+
+<h3>About OpenJML</h3>
+<p>
+OpenJML is a suite of tools for editing, parsing, type-checking,
+verifying (static checking), and run-time checking Java programs
+that are annotated with JML statements that describe what the program's methods are supposed to do. JML annotations state preconditions, postconditions, invariants and the like about a method or class; OpenJML is a tool that will then check that the implementation does indeed satisfy those specifications.
+<p>
+The Java Modeling Language (JML) is a
+behavioral interface specification language
+that can be used to specify the behavior of
+<a href="http://java.sun.com/docs/">Java</a> modules.
+It combines the design by contract approach of
+<a href="http://www.eiffel.com/">Eiffel</a> and 
+the model-based specification approach of the
+<a href="http://www.eecs.ucf.edu/~leavens/larch-faq.html">Larch</a>
+family of interface specification languages,
+with some elements of the
+<a href="http://www.ecs.soton.ac.uk/~mjb/refcalc-tut/home.html">
+refinement calculus</a>. 
+There is a web site for JML <a href="http://www.jmlspecs.org">here</a>, including a <a href="http://www.eecs.ucf.edu/~leavens/JML/jmlrefman/jmlrefman_toc.html">
+Reference Manual</a> [<a href="http://www.jmlspecs.org/OldReleases/jmlrefman.pdf">PDF</a>]
+[<a href="http://www.jmlspecs.org/OldReleases/jmlrefman.ps.gz">postscript</a>].
+</p>
+
+<p>
+OpenJML has the following capabilities:
+<UL>
+<LI>a command-line tool that enables
+<UL>
+<LI><strong>parsing and type-checking</strong> of Java+JML programs
+<LI><strong>static checking</strong> of JML annotations using backend SMT solvers
+<LI><strong>runtime-assertion checking</strong>, using an extension of the OpenJDK Java compiler
+</UL>
+<LI>an Eclipse plug-in that 
+<UL>
+<LI>encapsulates the capabilities of the command-line tool in an Eclipse-style GUI
+<LI>permits <strong>interactively exploring counter-examples </strong>resulting from failed attempts to verify assertions
+</UL>
+<LI>a programmatic API that gives access to the command-line tool capabilities from Java programs
+</UL>
+
+Other features that are in development include
+<UL>
+<LI>generation of javadoc documentation embellished with JML information
+<LI>generation of annotation templates
+<LI>auto-generation of test cases using symbolic execution, guided by JML annotations
+</UL>
+
+
+<h3><a name="People">People</a></h3>
+<p>
+OpenJML is developed by David Cok. It is based on the OpenJDK compiler, Eclipse plug-ins, and SMT solvers.
+</p>
+

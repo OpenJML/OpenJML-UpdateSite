@@ -1,0 +1,8 @@
+
+
+FILES="*.html *.shtml"
+
+for f in $FILES ; do
+echo $f
+cat header $f footer > ../$f
+done
