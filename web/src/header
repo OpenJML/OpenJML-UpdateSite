@@ -35,17 +35,19 @@
 <p><a href="plugin.shtml">Eclipse plug-in</a></p>
 <p><a href="contact.shtml">Contact</a></p>
 
+<p class="title">JML Details</p>
+
+<p class="title">OpenJML Reference</p>
+
+<p><a href="checks.shtml">Java and JML checks</a></p>
+<p><a href="features.shtml">Implementation status</a></p>
+
 <p class="title">For Developers</p>
 
 <p><a href="http://sourceforge.net/projects/jmlspecs">Sourceforge project</a>
 <a href="http://sourceforge.net/projects/jmlspecs"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=65346&amp;type=13" width="120" height="30" alt="Get Java Modeling Language (JML) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
 </p>
 <p><a href="http://sourceforge.net/apps/trac/jmlspecs/">Wiki</a></p>
-
-<p class="title">OpenJML Reference</p>
-
-<p><a href="checks.shtml">Java and JML checks</a></p>
-<p><a href="features.shtml">Implementation status</a></p>
 
 
 <p class="title">Valid</p>
