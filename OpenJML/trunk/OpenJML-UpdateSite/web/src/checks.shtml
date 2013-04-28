@@ -166,6 +166,7 @@ NullField
 ExceptionList
 MethodAxiom
 AssumeCheck
+arithmetic checks
 
 <H3>Undefined JML expressions</H3>
 JML expressions are not allowed to exit with exceptions; an expression that

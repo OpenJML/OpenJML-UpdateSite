@@ -6,6 +6,7 @@
 ## It also updates the JML project files.
 
 cd `dirname $BASH_SOURCE`
+(cd src; . create)
 
 cat webfiles allreleasefiles projectfiles | publish
 

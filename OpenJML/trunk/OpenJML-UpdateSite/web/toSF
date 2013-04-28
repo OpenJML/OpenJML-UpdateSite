@@ -5,6 +5,7 @@
 ## but only uploading the most recent feature and plugins
 
 cd `dirname $BASH_SOURCE`
+(cd src; . create)
 
 cat webfiles releasefiles projectfiles | publish
 

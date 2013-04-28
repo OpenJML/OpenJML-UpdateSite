@@ -1,11 +1,12 @@
 cd htdocs
 put web/index.html
-put web/installation.html
-put web/features.html
+put web/*.shtml
 put web/book.css
+put web/style.css
 put web/files/OpenJML-projectSet.psf
 put web/files/svn_commands
 put web/files/OpenJMLUserGuide.pdf
+put web/jml-logo-small64.png
 cd openjml-updatesite
 put web/openjml-updatesite/index.html
 put web/book.css
