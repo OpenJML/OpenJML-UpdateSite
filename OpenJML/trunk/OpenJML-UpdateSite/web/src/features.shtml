@@ -1137,18 +1137,18 @@ Modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java form
   <td align=center>0?</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#44FF44>OK</td>
-  <td>visibility modifications on specification clauses are ignored by OpenJML</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>Java visibility rules applied; JML's additions are not fully implemented</td>
 </tr>
 <tr>
   <td>spec_public, spec_protected</td>
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#44FF44>OK</td>
-  <td>privacy restrictions on specification clauses are currently ignored by OpenJML</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>Java visibility rules applied; JML's additions are not fully implemented</td>
 </tr>
 <tr>
   <td>instance, static on interface declarations</td>
