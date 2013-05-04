@@ -6,3 +6,5 @@ for f in $FILES ; do
 echo $f
 cat header $f footer > ../$f
 done
+
+cat header-index index.html footer > ../index.html

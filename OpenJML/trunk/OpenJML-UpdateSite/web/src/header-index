@@ -60,7 +60,7 @@
 <div id="rest">  
 
 <div id="banner">
- <h1><a name="top">OpenJML
+ <h1><a name="top">OpenJML - formal methods tool for Java and the Java Modeling Language
      (<span style="color:#006000">J</span><span style="color:#a00000">M</span><span style="color:#000090">L</span>)
       </a>
     </h1>
