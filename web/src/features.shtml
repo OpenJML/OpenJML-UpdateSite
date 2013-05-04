@@ -194,7 +194,7 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
 </tr>
 <tr>
   <td>Specifications in class files (via JIR or BML)</td>
-  <td align=center>0</td>
+  <td align=center></td>
   <td align=center bgcolor=#FF4444>OK</td>
   <td align=center bgcolor=#FF4444>OK</td>
   <td align=center bgcolor=#FF4444>OK</td>
@@ -207,9 +207,8 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center bgcolor=#FFFF44>OK*</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td>Library specifications are read and used by ESC, but not by RAC;
-many JDK library specifications must still be written. The library specs use some level 1 features and could reasonably use level C features.</td>
+  <td align=center bgcolor=#44FF44>X</td>
+  <td>Many JDK library specifications must still be written and tuned to static and runtime checking.</td>
 </tr>
 <tr>
   <td>field, method, constructor keywords</td>
@@ -334,7 +333,7 @@ many JDK library specifications must still be written. The library specs use som
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FFFF44>OK*</td>
-  <td>Functional represents clauses are level 0; \such_that clauses are level 2; RAC needs implementation for multiple or inherited represents clauses</td>
+  <td>Functional represents clauses are level 0; \such_that clauses are level 2; RAC/ESC need implementation for multiple or inherited represents clauses</td>
 </tr>
 
 <tr>
@@ -657,7 +656,7 @@ many JDK library specifications must still be written. The library specs use som
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FF4444>X</td>
   <td align=center bgcolor=#FF4444>X</td>
-  <td></td>
+  <td>Are these extra types considered primitive types?</td>
 </tr>
 <tr>
   <td>\real</td>
@@ -945,13 +944,13 @@ many JDK library specifications must still be written. The library specs use som
   <td>The (* *) form is translated to true; the proposed functional form is not implemented.</td>
 </tr>
 <tr>
-  <td>Let expression</td>
-  <td align=center>0</td>
-  <td align=center bgcolor=#FF4444>OK*</td>
-  <td align=center bgcolor=#FF4444>OK*</td>
-  <td align=center bgcolor=#FF4444>OK*</td>
-  <td align=center bgcolor=#FF4444>OK*</td>
-  <td>The let expression, introduced at Dagstuhl in 2009, is not yet implemented.</td>
+  <td>Let expression (introduced at Dagstuhl 2009)</td>
+  <td align=center>?</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td bgcolor=#FFFF44>Would be nice to have a such-that form of let.</td>
 </tr>
 </table>
 
@@ -977,8 +976,8 @@ many JDK library specifications must still be written. The library specs use som
   <td></td>
 </tr>
 <tr>
-  <td>x, o.f, o.*, T.f, T.*, a[i] syntax</td>
-  <td align=center>0</td>
+  <td>x, o.f, o.*, T.f, T.*, a[i], a[1..2], a[*] syntax</td>
+  <td align=center>2</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
@@ -986,12 +985,12 @@ many JDK library specifications must still be written. The library specs use som
   <td></td>
 </tr>
 <tr>
-  <td bgcolor=#FFFF44>a[1..2], a[1..], a[*] syntax</td>
+  <td bgcolor=#FFFF44>a[1..] syntax</td>
   <td align=center>Z</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
   <td></td>
 </tr>
 </table>
@@ -1069,7 +1068,7 @@ many JDK library specifications must still be written. The library specs use som
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td bgcolor=#FFFF44>Still need a mechanism to turn these off and on; also clairfy the permitted syntax</td>
+  <td bgcolor=#FFFF44>Still need a mechanism to turn these off and on; also clarify the permitted syntax</td>
 </tr>
 <tr>
   <td>loop_invariant</td>
@@ -1121,7 +1120,7 @@ many JDK library specifications must still be written. The library specs use som
 
 <A NAME="Modifiers"/>
 <h3>Modifiers on JML declarations</h3>
-Modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java form(e.g. @org.jmlspecs.org.Pure).
+JML modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java form(e.g. @org.jmlspecs.org.Pure).
 <table border="1">
 <TR>
   <td></td>
@@ -1139,7 +1138,7 @@ Modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java form
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FFFF44>OK*</td>
   <td align=center bgcolor=#FFFF44>OK*</td>
-  <td>Java visibility rules applied; JML's additions are not fully implemented</td>
+  <td>Need to adjusted JML visibility of protected declarations; also need to check visibility of classes</td>
 </tr>
 <tr>
   <td>spec_public, spec_protected</td>
@@ -1148,7 +1147,7 @@ Modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java form
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FFFF44>OK*</td>
   <td align=center bgcolor=#FFFF44>OK*</td>
-  <td>Java visibility rules applied; JML's additions are not fully implemented</td>
+  <td>Need to adjusted JML visibility of protected declarations; also need to check visibility of classes</td>
 </tr>
 <tr>
   <td>instance, static on interface declarations</td>
@@ -1164,8 +1163,8 @@ Modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java form
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
   <td bgcolor=#FFFF44>Ongoing discussion about the semantics of the helper modifier and the allowed visibility modifiers</td>
 </tr>
 <tr>
