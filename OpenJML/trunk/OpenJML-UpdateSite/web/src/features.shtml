@@ -101,8 +101,8 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
 <ul>
 <li><font style="background-color:#FFFF44">Generic types : partially modeled by ESC.</font>
 <li><font style="background-color:#FFFF44">Enhanced for loop: Modeled and checked using JML's loop annotations</font>
-<li><font style="background-color:#FF4444">Autoboxing/unboxing: </font></li>
-<li><font style="background-color:#FF4444">Typesafe enums : enums are not modeled by ESC; they are compiled but not checked by RAC</font>
+<li><font style="background-color:#444444">Autoboxing/unboxing: (OK for Java, needed yet for JML expression)</font></li>
+<li><font style="background-color:#FFFF44">Typesafe enums : enums are not modeled by ESC; they are compiled but not checked by RAC</font>
 <li><font style="background-color:#44FF44">Static import : OK</font> <font style="background-color:#FFFF44">( but JML model imports are treated just like Java imports)</font>
 <li><font style="background-color:#FF4444">Varargs : Not yet modeled or checked</font></li>
 <li><font style="background-color:#FF4444">Java annotations : No checks on annotations are modeled by ESC or compiled by RAC</font>.
@@ -113,8 +113,8 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
 <ul>
 <li><font style="background-color:#44FF44">binary literals: Implemented</font></li>
 <li><font style="background-color:#44FF44">literals with underscores: Implemented</font></li>
-<li><font style="background-color:#FF4444">Strings in switch statements: NOT modeled or checked</font></li>
-<li><font style="background-color:#FF4444">try with resources: NOT modeled or checked</font></li>
+<li><font style="background-color:#FF4444">Strings in switch statements: Compiled in RAC, but NOT modeled or checked</font></li>
+<li><font style="background-color:#FF4444">try with resources: Compiled in RAC, but NOT modeled or checked</font></li>
 <li><font style="background-color:#FF4444">Catching multiple exception types: NOT modeled or checked</font></li>
 <li><font style="background-color:#FF4444">Type inference: NOT implemented</font></li>
 <li><font style="background-color:#FF4444">Runtime errors associated with varargs parameter lists: NOT implemented</font></li>
@@ -207,8 +207,8 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center bgcolor=#FFFF44>OK*</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#44FF44>X</td>
-  <td>Many JDK library specifications must still be written and tuned to static and runtime checking.</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>Many JDK library specifications must still be written and tuned to static and runtime checking. RAC compiles checks into the caller, but not into the library itself.</td>
 </tr>
 <tr>
   <td>field, method, constructor keywords</td>
@@ -482,9 +482,10 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#44FF44>OK</td>
-  <td></td>
+  <td>Checks of assignable statements are implemented, but the appropriate havoc statements on calling a method with 
+  array index range expressions are imcomplete</td>
 </tr>
 <tr>
   <td>diverges</td>
@@ -750,7 +751,7 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FF4444>X</td>
-  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#44FF44>OK</td>
   <td></td>
 </tr>
 <tr>
@@ -1138,7 +1139,7 @@ JML modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java 
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FFFF44>OK*</td>
   <td align=center bgcolor=#FFFF44>OK*</td>
-  <td>Need to adjusted JML visibility of protected declarations; also need to check visibility of classes</td>
+  <td>Need to adjust JML visibility of protected declarations; also need to check visibility of classes</td>
 </tr>
 <tr>
   <td>spec_public, spec_protected</td>
