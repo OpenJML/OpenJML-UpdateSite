@@ -15,12 +15,17 @@ These are program errors that would result in Java runtime exceptions.
   <td>Comments</td>
 </tr>
 <tr>
-  <td bgcolor=#44FF44><code>PossiblyNullReference</code><BR>NullPointerException</BR></td>
+  <td bgcolor=#44FF44><code>PossiblyNullValue</code><BR>NullPointerException</BR></td>
+  <td>Illegal null value in Java expressions: switch expression, synchronized statement, throw statement</td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44><code>PossiblyNullDeReference</code><BR>NullPointerException</BR></td>
   <td>Null dereference in Java expressions: o may not be null in o.f, o.m(), o[i]</td>
   <td></td>
 </tr>
 <tr>
-  <td bgcolor=#44FF44><code>PossiblyNegativeSize</code><BR>NegativeArraySizeException</BR></td>
+  <td bgcolor=#FFFF44><code>PossiblyNegativeSize</code><BR>NegativeArraySizeException</BR></td>
   <td>In Java array creation expressions, the size may not be negative</td>
   <td></td>
 </tr>
@@ -49,6 +54,11 @@ These are program errors that would result in Java runtime exceptions.
   <td>In Java shift expressions (<code>a &lt;&lt; b</code>, <code>a &gt;&gt; b</code>, <code>a &gt;&gt;&gt; b</code>), only the lower 5 bits (for 32-bit operations) of the shift value (<code>b</code>) are used.
   That is, <code>a &lt;&lt; 32</code> is equivalent to no shift, not to a shift of all the bits of a 32-bit value. Though values of
   <code>b</code> larger than 31 are not illegal, they can be confusing. OpenJML warns if the value of the right-hand-side is greater or equal to the number of bits in the promoted type of the left-hand-side. </td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44><code>PossiblyNullUnbox</code></td>
+  <td>The argument of an unboxing operation must not be null</td>
   <td></td>
 </tr>
 <tr>
@@ -99,13 +109,8 @@ These are assertions that can be expressed in JML and are checked by OpenJML.
   <td></td>
 </tr>
 <tr>
-  <td bgcolor=#44FF44><code>TBD</code></td>
-  <td>Normal postconditions must be true at non-exceptional termination of a method</td>
-  <td></td>
-</tr>
-<tr>
   <td bgcolor=#44FF44><code>Postcondition</code></td>
-  <td>Exceptional postconditions must be true when a method ends with an exception</td>
+  <td>Normal postconditions must be true at non-exceptional termination of a method</td>
   <td></td>
 </tr>
 <tr>
@@ -114,8 +119,33 @@ These are assertions that can be expressed in JML and are checked by OpenJML.
   <td></td>
 </tr>
 <tr>
-  <td bgcolor=#44FF44>TBD</td>
+  <td bgcolor=#44FF44><code>ExceptionList</code></td>
+  <td>An expression was thrown whose type is not in the signals_only specification</td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44>Invariant</td>
   <td>Class invariants must be true when a method ends either normally or with an exception</td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44>InvariantLeaveCaller</td>
+  <td>Class invariants must be true in the caller when a method is called</td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44>InvariantEntrance</td>
+  <td>Class invariants must be true at the beginning of a callee when a method is called</td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44>InvariantExit</td>
+  <td>Class invariants must be true at the end of a callee when a method is called</td>
+  <td></td>
+</tr>
+<tr>
+  <td bgcolor=#44FF44>InvariantReenterCaller</td>
+  <td>Class invariants must be true in the caller when a called method returns</td>
   <td></td>
 </tr>
 <tr>
