@@ -497,12 +497,21 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td></td>
 </tr>
 <tr>
-  <td>forall, old</td>
+  <td>forall</td>
   <td align=center>1</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FF4444>X</td>
   <td align=center bgcolor=#FF4444>X</td>
+  <td></td>
+</tr>
+<tr>
+  <td>old</td>
+  <td align=center>1</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
   <td></td>
 </tr>
 <tr>
@@ -1305,7 +1314,7 @@ spec_bigint_math, spec_java_math, spec_safe_math</td>
 <ul>
 <li>The refine and refines statements; Specifications contained in files with suffixes other than .jml and .java; in addition, the algorithm for finding specification files has changed.</li>
 <li>The mechanism for specifying optional annotations has changed; //+@, /*+@, //-@ and /*-@ are all deprecated in JML. OpenJML ignores //-@ and /*-@ comments and accepts //+@ and /*+@ comments for now because there are such comments in the library specifications, since ESC Java uses them.</li>
-<li>The &lt;- form of the represents clause is deprecated, though it is still supported by OpenJML. (CHECK?)</li>
+<li>The &lt;- form of the represents clause is deprecated, though it is still supported by OpenJML.</li>
 <li>JML annotations within Javadoc comments are not supported by OpenJML; they are or will soon be deprecated by JML.</li>
 </ul>
 
