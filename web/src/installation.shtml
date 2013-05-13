@@ -17,7 +17,7 @@ The functionality is available
 
 <a href="#installation">Installation</A><br/>
 <a href="#Execution">Execution</A><br/>
-<a href="#Eclipse">OpenJML in Eclipse</A>
+<a href="plugin.shtml">OpenJML in Eclipse</A>
 
 <a name="installation"/>
 <h2>Installation</h2>
@@ -33,7 +33,7 @@ list <a href="#SMT">below</a>, and install it according to its instructions.</li
 To install the <B>Eclipse plug-in</B>, use the Eclipse mechanism for installing
 plug-ins from an update site. Use this URL for the update site: 
 <code>http://jmlspecs.sourceforge.net/openjml-updatesite</code>.
-The plug-in works with Eclipse 4.2.1.
+The plug-in works with Eclipse 4.2.1ff.
 
 Before performing static checking with the plug-in, you need to open the 
 OpenJML Solvers preference page, set a default prover (yices2 or z3_4_3),
@@ -66,6 +66,14 @@ The release may be installed anywhere you like.</li>
 <li>For static checking, an appropriate SMT solver.</li>
 </ul>
 </p>
+
+There are a few important topics for the user to know:
+<ul>
+<li><a href="paths.shtml">How source files, class files, and specification files are found</a></li>
+<li><a href="commandline.shtml">Command-line options</a></li>
+<li><a href="checks.shtml">The set of checks the tools perform</a></li>
+</ul>
+These topics are discussed at the indicated links.
 
 <h3>Type-checking</h3>
 
@@ -103,14 +111,6 @@ A.java:3: A \result expression may not be used in the specification of a method 
 </pre> </code>
 </div>
 
-There are a few important topics for the user to know:
-<ul>
-<li><a href="#FindingFiles">How source files, class files, and specification files are found</a></li>
-<li><a href="#Options">Command-line options</a></li>
-<li><a href="#Checks">The set of checks the tools perform</a></li>
-</ul>
-These topics are discussed below or at the indicated links.
-
 
 <h3>Static checking</h3>
 <P>
@@ -119,7 +119,7 @@ to determine logical satisfiability. See the installation instructions and the l
 of provers above and select one or more to install on your system.
 </P>
 <P>
-To run the static checker, us a command-line like the following, substituting 
+To run the static checker, use a command-line like the following, substituting 
 the path to the (in this case Z3) executable in your system. If you are using
 yices, substitute "yices2" for "z3_4_3".
 <div style="background-color:lightblue">
@@ -173,7 +173,7 @@ B.java:12: warning: Associated declaration
 <p>
 <ul>
 <li>The first two warnings point out that the specification of the method <code>setj</code> states that the field <code>j</code> (and nothing else) is modified by the method, but the method actually modifies <code>k</code>.
-<li>The second pair of warnings points out the call of <code>setj</code> in method <code>main</code> does not satisfy the postcondition; the "Associated declaration" warning that follows indicates the violated postcondition.
+<li>The second pair of warnings points out that the call of <code>setj</code> in method <code>main</code> does not satisfy the postcondition; the "Associated declaration" warning that follows indicates the violated postcondition.
 <li></li>
 </ul>
 
@@ -238,78 +238,3 @@ java -jar openjml.jar -doc -noPurityCheck </code><i>files-or-packages</i>
 </div>
  -->
  
-<A name="#FindingFiles"/>
-<h3>Finding source, class and specification files</h3>
-When a Java compiler compiles source files, it considers three types of files:
-<ul>
-<li>Source files listed on the command-line
-<li>Other source files referenced by those listed on the command-line, but not on the command-line themselves
-<li>Already-compiled class files
-</ul>
-The OpenJML tool considers the same files, but also needs
-<ul>
-<li>Specification files associated with classes in the program
-</ul>
-
-The OpenJML tool behaves in a way similar to a typical compiler, 
-making use of three directory paths - the classpath, the sourcepath, and the specspath.  
-These paths are standard lists of directories or jar files, 
-separated either by colons (Unix) or semicolons (Windows).  
-Java packages are subdirectories of these directories.
-<ul>
-<li><code>classpath</code>: The OpenJML classpath is set using one of these alternatives, in priority order:
-<ul>
-<li>As the argument to the OpenJML command-line option <code>-classpath</code>.
-<li>As the value of the Java property <code>org.jmlspecs.openjml.classpath</code>
-<li>As the value of the system environment variable <code>CLASSPATH</code>
-</ul>
-<li><code>sourcepath</code>: The OpenJML sourcepath is set using one of these alternatives, in priority order:
-<ul>
-<li>As the argument of the OpenJML command-line option <code>-sourcepath</code>
-<li>As the value of the Java property <code>org.jmlspecs.openjml.sourcepath</code>
-<li>As the value of the OpenJML classpath (as determined above).
-</ul>
-<li><code>specspath</code>: The OpenJML specifications path is set using one of these alternatives, in priority order:
-<ul>
-<li>As the argument of the OpenJML command-line option <code>-specspath</code>
-<li>As the value of the Java property <code>org.jmlspecs.openjml.specspath</code>
-<li>As the value of the OpenJML sourcepath (as determined above).
-</ul>
-</ul>
-Note that with no command-line options or Java properties set, the result is simply that the system CLASSPATH is used for all of these paths. A common practice is to simply use a single directory path, specified on the command-line using <code>-classpath</code>, for all three paths.
-<p>
-The paths are used as follows to find relevant files:
-
-<ul>
-<li>Files listed on the command-line are found directly in the file system. If the command-line element is an absolute path to a <code>.java</code> file, it is looked up in the file system as an absolute path; if the command-line element is a relative path, the file is found relative to the current working directory.
-<li>Classes that are referenced by files on the command-line or transitively by other classes in the program, can be found in one of two ways:
-<ul>
-<li>The source file for the class is sought as a sub-file of an element of the <code>sourcepath</code>.
-<li>The class file for the class is sought as a sub-file of an element of the <code>classpath</code>.
-</ul>
-If there is both a sourcefile and a classfile present, then TBD.
-<li>The OpenJML tool also looks for a specification file for each source or 
-class file used in the program. The specification file is a Java-like file that 
-has a <code>.jml</code> suffix, but otherwise has the same name and Java package 
-as the class that it specifies. The specification file used is the first file 
-with the correct name and package found in the sequence of directories and jar 
-files that make up the specspath. 
-If no such specification file is found, any specifications in 
-the <code>.java</code> source file are used 
-(as found on the command-line or on the sourcepath).
-(TBD: what if the file on the command-line is not in the sourcepath?)
-</ul>
-
-</ul>
-
-
-<a name="Eclipse"/>
-<h2>OpenJML as an Eclipse Plugin</h2>
-
-
-<A name="#Options"></A>
-<h2>Command-line options for OpenJML</h2>
-
-<A name="#Checks"></A>
-<h2>Checks performed by OpenJML</h2>
-
