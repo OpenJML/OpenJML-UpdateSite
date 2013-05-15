@@ -666,7 +666,12 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FF4444>X</td>
   <td align=center bgcolor=#FF4444>X</td>
-  <td>Are these extra types considered primitive types?</td>
+  <td>Are these extra types considered primitive types?
+  [Yes, see Fig. 6 on p. 63 of P. Chalin, 
+  "<a href="http://www.jot.fm/issues/issue_2004_06/article3.pdf">JML Support for Primitive Arbitrary Precision Numeric Types:
+  Definition and Semantics"</a>, 
+  JOT, 3(6):57-79, 2004.]
+  </td>
 </tr>
 <tr>
   <td>\real</td>
