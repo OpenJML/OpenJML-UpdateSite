@@ -703,7 +703,7 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td></td>
 </tr>
 <tr>
-  <td>&lt;: operator</td>
+  <td>&lt;: operator (subtype)</td>
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
@@ -748,6 +748,15 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td bgcolor=#FFFF44>There are on-going discussions about the semantics of cross-state comparisons</td>
 </tr>
 <tr>
+  <td>bgcolor=#FFFF44 \past</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#FF4444>OK</td>
+  <td align=center bgcolor=#FF4444>OK</td>
+  <td bgcolor=#FFFF44>This feature is under discussion as an addition or replacement for \old</td>
+</tr>
+<tr>
   <td>\fresh</td>
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
@@ -761,7 +770,7 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#44FF44>OK (uses quantification)</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td></td>
 </tr>
@@ -842,8 +851,8 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center>2</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FFFF44>-(not implemented for model fields or for o.*, a[*] and a[..] syntax, semantics for x.f is under consideration)</td>
+  <td align=center bgcolor=#FFFF44>-(same as above)</td>
   <td></td>
 </tr>
 <tr>
