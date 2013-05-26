@@ -11,12 +11,14 @@
 ## Create a current version of the README file
 ## Sets the value of the 'version' variable
 
+make -C ../OpenJML/documentation/OpenJMLUserGuide all > ../OpenJML/documentation/OpenJMLUserGuide/build.log
 rm -rf web/files
 mkdir web/files
 cd C:/cygwin/home/dcok/eprojects/OpenJML-UpdateSite
-cp ../../texstuff/papers/OpenJMLUserGuide/OpenJMLUserGuide.pdf web/files
-cp ../OpenJML/OpenJML-projectSet.psf web/files
-cp ../OpenJML/svn_commands web/files
+cp ../OpenJML/documentation/OpenJMLUserGuide/OpenJMLUserGuide.pdf web/files
+cp ../projectSet.psf web/files/OpenJML-projectSet.psf
+web/convert-psf ../projectSet.psf ../svn_commands
+cp ../svn_commands web/files
 export version=`ls -t features/* | head -1 | sed -e sxfeatures/org.jmlspecs.openjml.OpenJMLFeature_xx -e sx.jarxx`
 file=`ls -t ../OpenJML/*.tar.gz | head -1`
 ##filedate=`echo $file | tr -d [a-zA-Z./] | tr -d '-'`
