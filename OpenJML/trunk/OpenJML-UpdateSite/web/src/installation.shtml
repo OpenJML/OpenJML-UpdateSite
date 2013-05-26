@@ -46,7 +46,8 @@ In general, OpenJML can use any SMT-LIBv2-compliant
 solver, but since tools vary in their SMT-compliance and their support for various logics, 
 adapter code is often needed. OpenJML has been tested with 
 <ul>
-<li><a href="http://z3.codeplex.com/">Z3</a> (version 4.3) on Windows</li>
+<li><a href="http://z3.codeplex.com/">Z3</a> (version 4.3) on Windows and Mac (not quite working yet on Linux)</li>
+<li><a href="http://cvc4.cs.nyu.edu">CVC4</a> (version 1.2) on Windows</li>
 <li><a href="http://yices.csl.sri.com/">Yices</a> (version 2.1) on Windows or Mac OSX</li>
 <li>(Linux platforms may well work but have not been tested.)</li>
 </ul>
