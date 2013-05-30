@@ -1,5 +1,6 @@
 cd htdocs
 put web/files/*.gz openjml.tar.gz
+put web/files/*.zip openjml.zip
 cd openjml-updatesite
 put site.xml
 put content.jar

@@ -21,6 +21,23 @@ OpenJML is current with Java 1.7u6.
 This page makes available some resources for OpenJML.
 OpenJML is a work in progress.
 </p>
+<p>
+<B>Note that OpenJML is not a theorem prover or model checker itself. OpenJML 
+translates JML specifications into SMTLIB format and passes the proof 
+problems implied by the Java+JML program to backend SMT solvers. Success in checking
+the specifications against the code will depend on 
+<UL>
+<LI>(a) the capability of the
+backend SMT solver, 
+<LI>(b) the particular encoding of code+specifications into SMT by OpenJML, and
+<LI>(c) the complexity and style of writing the code and specifications.
+</UL></B>
+<p>
+<B>Correspondingly, key goals of OpenJML are to provide challenge problems to 
+SMT solvers (point a), particularly around quantified expressions,
+to experiment with the encoding of code and specifications in OpenJML itself (point b)
+and to allow users to easily experiment with styles of specification writing (point c).
+</B>
 <P>
 A summary of the features and the implementation status of OpenJML is 
 <A HREF="features.shtml">here</A>.
@@ -47,8 +64,8 @@ These documents are works in progress.
 
 <h3>Command-line tool</h3>
 <P>
-The OpenJML command line tool can be downloaded from
-<A HREF="openjml.tar.gz">here</A>.
+The OpenJML command line tool can be downloaded as a
+<A HREF="openjml.tar.gz">tar.gz file</A> or a <A HREF="openjml.zip">zip file</A>.
 </P>
 
 

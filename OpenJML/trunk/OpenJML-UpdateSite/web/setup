@@ -25,7 +25,7 @@ file=`ls -t ../OpenJML/*.tar.gz | head -1`
 echo The current version is $version, file $file
 echo The current version is $version, file $file | cat web/README-root - > web/files/README
 
-cp ../OpenJML/$file web/files
-
+cp $file web/files
+cp `echo "$file" | sed -e "s/tar.gz/zip/"`  web/files
 
 

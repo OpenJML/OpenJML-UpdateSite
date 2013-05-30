@@ -749,7 +749,7 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
 </tr>
 <tr>
   <td bgcolor=#FFFF44> \past</td>
-  <td align=center>0</td>
+  <td align=center>?</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FF4444>OK</td>
@@ -779,8 +779,8 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#44FF44>X</td>
+  <td align=center bgcolor=#44FF44>X</td>
   <td></td>
 </tr>
 <tr>
@@ -997,8 +997,17 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td></td>
 </tr>
 <tr>
-  <td>x, o.f, o.*, T.f, T.*, a[i], a[1..2], a[*] syntax</td>
-  <td align=center>2</td>
+  <td>x, o.f, T.f, a[i] syntax</td>
+  <td align=center>0</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
+</tr>
+<tr>
+  <td>o.*, T.*, a[1..2], a[*] syntax</td>
+  <td align=center>2?</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
