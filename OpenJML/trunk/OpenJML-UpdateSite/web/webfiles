@@ -1,5 +1,3 @@
-cp ../../projectSet.psf files/OpenJML-projectSet.psf
-./convert-psf files/OpenJML-projectSet.psf files/svn_commands
 cd htdocs
 put web/index.html
 put web/*.shtml

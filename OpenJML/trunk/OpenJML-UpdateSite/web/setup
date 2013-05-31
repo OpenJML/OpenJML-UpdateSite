@@ -1,5 +1,6 @@
 
 ## This script should be SOURCED, not executed
+## The pwd must be the OpenJML-UpdateSite directory
 
 ## This script copies files from elsewhere into the 'web' subdirectory and creates the README file
 ## It is a common setup file used by the various scripts that copy to sourceforge
