@@ -1,6 +1,7 @@
 cd htdocs
 put web/index.html
 put web/*.shtml
+put web/favicon.ico
 put web/book.css
 put web/style.css
 put web/files/OpenJML-projectSet.psf
