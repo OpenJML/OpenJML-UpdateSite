@@ -7,7 +7,7 @@
   <head>
     <link href="style.css" rel="STYLESHEET" type="text/css" />
     <meta name="description" content="OpenJML, formal methods tool for Java and the Java Modeling Language (JML)" />
-
+    <link rel="SHORTCUT ICON" href="favicon.ico">
 
     <!-- customize the page title -->
     <title>OpenJML User Guide and Reference</title>
