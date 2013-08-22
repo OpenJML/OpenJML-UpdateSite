@@ -8,7 +8,7 @@ OpenJML can be invoked as a command in a command-shell environment. It presumes 
 <center><code>java -jar openjml.jar</code> <em>options files</em></center><BR>
 The options and files may be intermingled. The files are listed just as they 
 would be in a java compilation command; they may include .java and .jml files. 
-An entire folder of files can be included using the <code>-dir</code>code> option;
+An entire folder of files can be included using the <code>-dir</code> option;
 listing a folder is equivalent to listing all .java and .jml files within the 
 folder and its subfolders.
 
