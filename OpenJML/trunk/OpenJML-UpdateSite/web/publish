@@ -14,7 +14,8 @@ export SOURCEFORGE_USERNAME=$USER
 
 fi
 
-echo Version ${version}
+echo "Using sourceforge user name $SOURCEFORGE_USERNAME"
+echo "Version ${version}"
 cat - | sed -e s/\$\{version\}/$version/ | sftp $SOURCEFORGE_USERNAME,jmlspecs@web.sourceforge.net 
 
-
+echo "Upload Complete"
