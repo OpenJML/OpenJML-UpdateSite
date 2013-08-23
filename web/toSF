@@ -7,7 +7,7 @@
 cd `dirname $BASH_SOURCE`
 (cd src; . create)
 
-cat webfiles releasefiles projectfiles | publish
+cat webfiles releasefiles projectfiles | ./publish
 
 
 
