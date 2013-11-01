@@ -165,6 +165,9 @@
    <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.5.20.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.5.20">
       <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
    </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.5.21.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.5.21">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
    <category-def name="org.jmlspecs.openjml.OpenJMLPlugin" label="OpenJML">
       <description>
          This update site packages the OpenJML application within an Eclipse plugin.
