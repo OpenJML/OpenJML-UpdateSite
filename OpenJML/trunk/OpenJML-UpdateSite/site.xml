@@ -179,7 +179,7 @@
    </feature>
    <category-def name="org.jmlspecs.openjml.OpenJMLPlugin" label="OpenJML">
       <description>
-         This update site packages the OpenJML application within an Eclipse plugin.
+         This update site provides the OpenJML application and a GUI for it, packaged as an Eclipse plugin.
       </description>
    </category-def>
 </site>
