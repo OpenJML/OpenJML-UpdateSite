@@ -100,8 +100,8 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
 <li>Java 5:
 <ul>
 <li><font style="background-color:#FFFF44">Generic types : partially modeled by ESC.</font>
-<li><font style="background-color:#FFFF44">Enhanced for loop: Modeled and checked using JML's loop annotations</font>
-<li><font style="background-color:#444444">Autoboxing/unboxing: (OK for Java, needed yet for JML expression)</font></li>
+<li><font style="background-color:#44FF44">Enhanced for loop: Modeled and checked using JML's loop annotations</font>
+<li><font style="background-color:#44FF44">Autoboxing/unboxing: (OK for Java, needed yet for JML expression)</font></li>
 <li><font style="background-color:#FFFF44">Typesafe enums : enums are not modeled by ESC; they are compiled but not checked by RAC</font>
 <li><font style="background-color:#44FF44">Static import : OK</font> <font style="background-color:#FFFF44">( but JML model imports are treated just like Java imports)</font>
 <li><font style="background-color:#FF4444">Varargs : Not yet modeled or checked</font></li>
@@ -195,10 +195,10 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
 <tr>
   <td>Specifications in class files (via JIR or BML)</td>
   <td align=center></td>
-  <td align=center bgcolor=#FF4444>OK</td>
-  <td align=center bgcolor=#FF4444>OK</td>
-  <td align=center bgcolor=#FF4444>OK</td>
-  <td align=center bgcolor=#FF4444>OK</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FF4444>X</td>
   <td>Not yet implemented.</td>
 </tr>
 <tr>
@@ -761,7 +761,7 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FF4444>X</td>
   <td></td>
 </tr>
@@ -820,7 +820,7 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td>\lbl is an extension</td>
 </tr>
 <tr>
-  <td>Quantified expressions: \forall, \exists</td>
+  <td>Quantified expressions: \forall, \exists, \max, \min</td>
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
@@ -829,13 +829,13 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td>RAC is implemented for expressions with just one declaration; not all provers handle quantification</td>
 </tr>
 <tr>
-  <td>Quantified expressions: \num_of, \sum, \product, \max, \min</td>
+  <td>Quantified expressions: \num_of, \sum, \product</td>
   <td align=center>1</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#FF4444>X</td>
   <td align=center bgcolor=#FFFF44>OK*</td>
-  <td>RAC is implemented for expressions with just one declaration; proposed extensions not yet implemented</td>
+  <td>RAC is implemented for expressions with just one declaration; proposed extensions not yet implemented. SMT solvers do not generally handle induction well, as needed for these operators.</td>
 </tr>
 <tr>
   <td>Set comprehension</td>
@@ -951,18 +951,18 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center>2</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td>Parsed and ignored (treated as a no-op)</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td>Partially implemented</td>
 </tr>
 <tr>
   <td>Informal expression</td>
   <td align=center>0</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td>The (* *) form is translated to true; the proposed functional form is not implemented.</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>The (* *) form is translated to true; the proposed functional form  - JML.informal(\_) - is also implemented.</td>
 </tr>
 <tr>
   <td>Let expression (introduced at Dagstuhl 2009)</td>
@@ -1098,7 +1098,7 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td bgcolor=#FFFF44>Still need a mechanism to turn these off and on; also clarify the permitted syntax</td>
+  <td bgcolor=#FFFF44>Need to clarify the permitted syntax</td>
 </tr>
 <tr>
   <td>loop_invariant</td>
@@ -1138,6 +1138,15 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td></td>
 </tr>
 <tr>
+  <td bgcolor=#FFFF44>reachable</td>
+  <td align=center>2</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td>This is an extension</td>
+</tr>
+<tr>
   <td>hence_by</td>
   <td align=center>2</td>
   <td align=center bgcolor=#44FF44>OK</td>
@@ -1166,18 +1175,18 @@ JML modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java 
   <td align=center>0?</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td>Need to adjust JML visibility of protected declarations; also need to check visibility of classes</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
 </tr>
 <tr>
   <td>spec_public, spec_protected</td>
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td>Need to adjusted JML visibility of protected declarations; also need to check visibility of classes</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
 </tr>
 <tr>
   <td>instance, static on interface declarations</td>
@@ -1193,9 +1202,9 @@ JML modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java 
   <td align=center>0</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td align=center bgcolor=#FFFF44>OK*</td>
-  <td bgcolor=#FFFF44>Ongoing discussion about the semantics of the helper modifier and the allowed visibility modifiers</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
 </tr>
 <tr>
   <td>ghost, model</td>
@@ -1238,8 +1247,8 @@ JML modifiers can be expressed in either JML form (e.g. /*@ pure */) or in Java 
   <td align=center>Z</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
   <td>Extension</td>
 </tr>
 <tr>
@@ -1248,8 +1257,8 @@ spec_bigint_math, spec_java_math, spec_safe_math</td>
   <td align=center>2</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td align=center bgcolor=#FF4444>X</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
+  <td align=center bgcolor=#FFFF44>OK*</td>
   <td></td>
 </tr>
 <tr>
@@ -1313,11 +1322,13 @@ spec_bigint_math, spec_java_math, spec_safe_math</td>
 <ul>
 <li>The \lbl expression</li>
 <li>The \values and \index expressions (used with for-each loops)</li>
+<li>The \distinct expression</li>
 <li>Flexibility in writing method specifications? Optional 'also'? an else?</li>
 <li>Query and Secret annotations</li>
 <li>The use of Java or JML comments within JML comments</li>
-<li>Predefined ESC and RAC and DOC and DEBUG annotation keys.</li>
-<li>Predefined JAVA4 JAVA5 JAVA6 JAVA7 annotation keys.</li>
+<li>Predefined ESC and RAC and DOC and DEBUG annotation keys</li>
+<li>Predefined JAVA4 JAVA5 JAVA6 JAVA7 annotation keys</li>
+<li>The reachable statement</li>
 </ul>
 
 <!-- Undefinedness checks -->
