@@ -437,9 +437,9 @@ Some elements are not modeled by OpenJML logic or have the corresponding checks 
   <td align=center>3</td>
   <td align=center bgcolor=#44FF44>OK</td>
   <td align=center bgcolor=#44FF44>OK</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td align=center bgcolor=#FF4444>X</td>
-  <td>parsed, checked, and ignored</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td align=center bgcolor=#44FF44>OK</td>
+  <td></td>
 </tr>
 <tr>
   <td>requires</td>
