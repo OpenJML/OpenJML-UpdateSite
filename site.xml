@@ -192,6 +192,9 @@
    <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.5.29.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.5.29">
       <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
    </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.5.30.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.5.30">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
    <category-def name="org.jmlspecs.openjml.OpenJMLPlugin" label="OpenJML">
       <description>
          This update site provides the OpenJML application and a GUI for it, packaged as an Eclipse plugin.
