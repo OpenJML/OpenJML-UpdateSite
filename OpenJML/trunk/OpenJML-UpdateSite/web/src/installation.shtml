@@ -8,33 +8,34 @@ javadoc documentation.
 </p>
 <p>
 The functionality is available 
+</p>
 <ul>
 <li>as a command-line tool to do type-checking, static checking or runtime checking,</li>
 <li>as an Eclipse plug-in to perform those tasks, and</li>
 <li>programmatically from a user's Java program</li>
 </ul>
-</p>
 
-<a href="#installation">Installation</A><br/>
-<a href="#Execution">Execution</A><br/>
-<a href="plugin.shtml">OpenJML in Eclipse</A>
+<a href="#installation">Installation</a><br/>
+<a href="#Execution">Execution</a><br/>
+<a href="plugin.shtml">OpenJML in Eclipse</a>
 
 <a name="installation"/>
 <h2>Installation</h2>
 
 <p>
-To install the <B>command-line tool</B>, complete these steps:
+To install the <b>command-line tool</b>, complete these steps:
+</p>
 <ul>
-<li>download the zipped package from <A HREF="openjml.tar.gz">here</A>. Unzip and untar it into a folder of your choice.</li>
+<li>download the zipped package from <a href="openjml.tar.gz">here</a>. Unzip and untar it into a folder of your choice.</li>
 <li>For static checking, you will need an SMT solver. Make a choice from the
 list <a href="#SMT">below</a>, and install it according to its instructions.</li>
 </ul> 
-
-To install the <B>Eclipse plug-in</B>, use the Eclipse mechanism for installing
+<p>
+To install the <b>Eclipse plug-in</b>, use the Eclipse mechanism for installing
 plug-ins from an update site. Use this URL for the update site: 
 <code>http://jmlspecs.sourceforge.net/openjml-updatesite</code>.
 The plug-in works with Eclipse 4.2.1ff.
-
+</p><p>
 Before performing static checking with the plug-in, you need to open the 
 OpenJML Solvers preference page, set a default prover (yices2 or z3_4_3),
 and enter the absolute path on your system to the prover executable.
@@ -78,13 +79,12 @@ These topics are discussed at the indicated links.
 
 <h3>Type-checking</h3>
 
-<p>
 The OpenJML tool operates like a Java compiler, on a set of files.  For example, the command
 
 <div style="background-color:lightblue">
-<code> <br>
+<code> <br/>
 java -jar openjml.jar -noPurityCheck A.java
-<br><br> </code>
+<br/><br/> </code>
 </div>
 will type-check the Java and JML in the A.java file and any classes on which it depends.
 Include the full absolute or relative path to the openjml.jar file as needed.
@@ -114,20 +114,20 @@ A.java:3: A \result expression may not be used in the specification of a method 
 
 
 <h3>Static checking</h3>
-<P>
+<p>
 To perform static checking of the JML specifications you will need an SMT solver 
 to determine logical satisfiability. See the installation instructions and the list
 of provers above and select one or more to install on your system.
-</P>
-<P>
+</p>
+<p>
 To run the static checker, use a command-line like the following, substituting 
 the path to the (in this case Z3) executable in your system. If you are using
 yices, substitute "yices2" for "z3_4_3".
 <div style="background-color:lightblue">
-<code> <br>
+<code> <br/>
 java -jar openjml.jar -esc -prover z3_4_3 -exec <em>path-to-executable</em> -noPurityCheck B.java
-<br><br> </code>
-</P>
+<br/><br/> </code>
+</p>
 </div>
 <p>
 For example, place the following text in the file <code>B.java</code> and execute the command above.
@@ -181,9 +181,9 @@ B.java:12: warning: Associated declaration
 <h3>Runtime assertion checking</h3>
 To compile the JML specifications in the given files and in any files that they reference as assertions to be checked at runtime, use the -rac option:
 <div style="background-color:lightblue">
-<code> <br> 
+<code> <br/> 
 java -jar openjml.jar -rac -noPurityCheck B.java
-<br><br> </code>
+<br/><br/> </code>
 </div>
 <p>
 Then execute this command (the jmlruntime.jar is part of the OpenJML installation -- include the full path to that library as needed)
@@ -233,9 +233,9 @@ In addition, the postcondition of main fails when main itself exits.
 <h3>Producing documentation</h3>
 To produce javadoc files with JML specifications inserted, use the following command:
 <div style="background-color:lightblue">
-<code> <br> 
+<code> <br/> 
 java -jar openjml.jar -doc -noPurityCheck </code><i>files-or-packages</i>
-<br><br> </code>
+<br/><br/> </code>
 </div>
  -->
  

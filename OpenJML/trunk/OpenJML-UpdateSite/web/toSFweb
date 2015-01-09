@@ -8,5 +8,5 @@ cd `dirname $BASH_SOURCE`
 (cd src; . create)
 
 ./publish < ./webfiles
-
+echo "Web files uploaded"
 

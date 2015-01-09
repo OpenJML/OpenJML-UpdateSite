@@ -6,6 +6,7 @@
 OpenJML is a suite of tools for editing, parsing, type-checking,
 verifying (static checking), and run-time checking Java programs
 that are annotated with JML statements that describe what the program's methods are supposed to do. JML annotations state preconditions, postconditions, invariants and the like about a method or class; OpenJML is a tool that will then check that the implementation does indeed satisfy those specifications.
+</p>
 <p>
 The Java Modeling Language (JML) is a
 behavioral interface specification language
@@ -26,27 +27,28 @@ Reference Manual</a> [<a href="http://www.jmlspecs.org/OldReleases/jmlrefman.pdf
 
 <p>
 OpenJML has the following capabilities:
-<UL>
-<LI>a command-line tool that enables
-<UL>
-<LI><strong>parsing and type-checking</strong> of Java+JML programs
-<LI><strong>static checking</strong> of JML annotations using backend SMT solvers
-<LI><strong>runtime-assertion checking</strong>, using an extension of the OpenJDK Java compiler
-</UL>
-<LI>an Eclipse plug-in that 
-<UL>
-<LI>encapsulates the capabilities of the command-line tool in an Eclipse-style GUI
-<LI>permits <strong>interactively exploring counter-examples </strong>resulting from failed attempts to verify assertions
-</UL>
-<LI>a programmatic API that gives access to the command-line tool capabilities from Java programs
-</UL>
+</p>
+<ul>
+<li>a command-line tool that enables</li>
+<ul>
+<li><strong>parsing and type-checking</strong> of Java+JML programs</li>
+<li><strong>static checking</strong> of JML annotations using backend SMT solvers</li>
+<li><strong>runtime-assertion checking</strong>, using an extension of the OpenJDK Java compiler</li>
+</ul>
+<li>an Eclipse plug-in that </li>
+<ul>
+<li>encapsulates the capabilities of the command-line tool in an Eclipse-style GUI</li>
+<li>permits <strong>interactively exploring counter-examples </strong>resulting from failed attempts to verify assertions</li>
+</ul>
+<li>a programmatic API that gives access to the command-line tool capabilities from Java programs</li>
+</ul>
 
 Other features that are in development include
-<UL>
-<LI>generation of javadoc documentation embellished with JML information
-<LI>generation of annotation templates
-<LI>auto-generation of test cases using symbolic execution, guided by JML annotations
-</UL>
+<ul>
+<li>generation of javadoc documentation embellished with JML information</li>
+<li>generation of annotation templates</li>
+<li>auto-generation of test cases using symbolic execution, guided by JML annotations</li>
+</ul>
 
 
 <h3><a name="People">People</a></h3>

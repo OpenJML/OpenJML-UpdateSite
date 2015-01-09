@@ -1,6 +1,6 @@
 cd htdocs
-put web/index.html
-put web/*.shtml
+put web/temp/index.html
+put web/temp/*.shtml
 put web/favicon.ico
 put web/book.css
 put web/style.css
