@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
   <head>
     <link href="style.css" rel="STYLESHEET" type="text/css" />
     <meta name="description" content="OpenJML, formal methods tool for Java and the Java Modeling Language (JML)" />
-    <link rel="SHORTCUT ICON" href="favicon.ico">
+    <link rel="SHORTCUT ICON" href="favicon.ico"/>
 
     <!-- customize the page title -->
     <title>OpenJML User Guide and Reference</title>
@@ -24,8 +24,8 @@
 </td>
 </tr>
 </table>
-<br>
-<br>
+<br/>
+<br/>
 <p><a href="index.html">Home</a></p>
 
 <p class="title">Guide to Use</p>
@@ -46,10 +46,11 @@
 
 <p class="title">For Developers</p>
 
-<p><a href="http://sourceforge.net/projects/jmlspecs">Sourceforge project</a>
+<p>
+<a href="http://sourceforge.net/projects/jmlspecs">Sourceforge project</a>
 <a href="http://sourceforge.net/projects/jmlspecs"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=65346&amp;type=13" width="120" height="30" alt="Get Java Modeling Language (JML) at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
 </p>
-<p><a href="http://sourceforge.net/apps/trac/jmlspecs/">Wiki</a></p>
+<p><a href="http://sourceforge.net/p/jmlspecs/wiki/Home/">Wiki</a></p>
 
 
 <p class="title">Valid</p>

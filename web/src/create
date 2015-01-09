@@ -1,12 +1,17 @@
 
 
+export T=temp
+rm -rf ../$T
+mkdir -p ../$T
+
+
 FILES="*.html *.shtml"
 
 for f in $FILES ; do
 echo $f
 DT=`ls -l --time-style='+%Y %B %d' $f | awk '{print $7,$8,$9}'`
-cat header $f footer | sed -e "s/MODDATE/$DT/" > ../$f
+cat header $f footer | sed -e "s/MODDATE/$DT/" > ../$T/$f
 done
 
 DT=`ls -l --time-style='+%Y %B %d' index.html | awk '{print $7,$8,$9}'`
-cat header-index index.html footer | sed -e "s/MODDATE/$DT/" > ../index.html
+cat header-index index.html footer | sed -e "s/MODDATE/$DT/" > ../$T/index.html

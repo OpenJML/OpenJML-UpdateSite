@@ -1,5 +1,5 @@
 
-<h2><center>References</center></h2>
+<h2 align="center">References</h2>
 <p>
 The JML web site contains a 
 <a href ="http://www.jmlspecs.org/papers.shtml">long list</a> 
@@ -9,9 +9,11 @@ duplicate that here. Instead the papers listed here are those
 particularly relevant to how a tool like OpenJML is built and 
 to the specific
 features in JML
+</p>
 <p>
-<B>THIS LIST IS VERY MUCH A WORK IN PROGRESS</B>
-<p>
+<b>THIS LIST IS VERY MUCH A WORK IN PROGRESS</b>
+</p>
+
 
 <a name="Arithmetic"/>
 <h4>Arithmetic</h4>
@@ -19,5 +21,5 @@ P. Chalin,
 <a href="http://www.jot.fm/issues/issue_2004_06/article3.pdf"><i>JML Support for Primitive Arbitrary Precision Numeric Types:
   Definition and Semantics</i></a>, 
   JOT, 3(6):57-79, 2004.
-<p>
+
   

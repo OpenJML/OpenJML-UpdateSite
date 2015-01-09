@@ -2,9 +2,9 @@
 
 <p>
 These tables list the various checks that OpenJML performs on a Java program.
-<BR><A HREF="#Java">Java language checks</A>
-<BR><A HREF="#Assertions">JML assertions</A>
-<BR><A HREF="#Assumptions">JML assumptions</A>
+<BR><a href="#Java">Java language checks</a>
+<BR><a href="#Assertions">JML assertions</a>
+<BR><a href="#Assumptions">JML assumptions</a>
 <P>
 <H3>Java Language Checks</H3>
 These are program errors that would result in Java runtime exceptions.
