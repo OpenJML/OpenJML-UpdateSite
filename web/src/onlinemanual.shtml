@@ -5,11 +5,13 @@
 <p>
 OpenJML is a suite of tools for editing, parsing, type-checking,
 verifying (static checking), and run-time checking Java programs
-that are annotated with JML statements that describe what the program's methods are supposed to do. JML annotations state preconditions, postconditions, invariants and the like about a method or class; OpenJML is a tool that will then check that the implementation does indeed satisfy those specifications.
+that are annotated with JML statements stating what the program's methods are supposed to do 
+and the invariants the data structures should obey. JML annotations state preconditions, postconditions, invariants and the like about a method or class; 
+OpenJML's tools will then check that the implementation is consistent with those specifications.
 </p>
 <p>
 The Java Modeling Language (JML) is a
-behavioral interface specification language
+behavioral interface specification language (BISL)
 that can be used to specify the behavior of
 <a href="http://java.sun.com/docs/">Java</a> modules.
 It combines the design by contract approach of
@@ -22,7 +24,10 @@ with some elements of the
 refinement calculus</a>. 
 There is a web site for JML <a href="http://www.jmlspecs.org">here</a>, including a <a href="http://www.eecs.ucf.edu/~leavens/JML/jmlrefman/jmlrefman_toc.html">
 Reference Manual</a> [<a href="http://www.jmlspecs.org/OldReleases/jmlrefman.pdf">PDF</a>]
-[<a href="http://www.jmlspecs.org/OldReleases/jmlrefman.ps.gz">postscript</a>].
+[<a href="http://www.jmlspecs.org/OldReleases/jmlrefman.ps.gz">postscript</a>], 
+references to key publications, 
+links to groups that contribute to or use JML, 
+and other documentation.
 </p>
 
 <p>
@@ -45,9 +50,10 @@ OpenJML has the following capabilities:
 
 Other features that are in development include
 <ul>
-<li>generation of javadoc documentation embellished with JML information</li>
-<li>generation of annotation templates</li>
-<li>auto-generation of test cases using symbolic execution, guided by JML annotations</li>
+<li>generation of javadoc documentation embellished with JML information,</li>
+<li>generation of annotation templates,</li>
+<li>inference of specifications from implementations,<li>
+<li>and auto-generation of test cases using symbolic execution, guided by JML annotations.</li>
 </ul>
 
 
@@ -58,5 +64,15 @@ OpenJML is developed by David Cok. It is based on
 <a href="http://eclipse.org">Eclipse plug-ins</a>, and 
 <a href="http://smtlib.org">SMT-lib based SMT solvers</a>,
 all of which have had countless other people contributing to them.
+</p><p>
+The following have also contributed to OpenJML in various ways:
 </p>
+<ul>
+<li>John SIngleton (UCF< with Gary Leavens)
+<li>Dan ZImmerman, Marieke Huisman, Wojciech Mostowski, Arend Rensink and others for usability suggestions and bugs while preparing course materials
+<li>Gunjan Aggarawal (GrammaTech engineer) for reworking the organization of OpenJML testing
+<li>Daniel Houck (Harvey-Mudd undersgraduate, under Dan Zimmerman) for the initial implementation of syntax coloring
+<li>all those that communicated bug reports and tested fixes
+</ul>
+
 

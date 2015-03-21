@@ -1,9 +1,10 @@
 
 <h2>JML</h2>
 <p>
-The Java Modeling Language (JML) is a language that enables logical assertions
-to be made about Java programs. The assertions are expressed as structured 
-Java comments or Java annotations. Various tools can then read the JML 
+The Java Modeling Language (JML) is a language in which the functional behavior of Java classes 
+can be described.
+The descriptions of behavior are expressed as structured 
+Java comments or Java annotations that use a Java-like logical expressions. Various tools can then read the JML 
 information and do static checking, runtime checking, display for documentation,
 or other useful tasks.
 </p>
@@ -17,14 +18,14 @@ There is also a <a href="https://sourceforge.net/projects/jmlspecs/">sourceforge
 <h2>OpenJML</h2>
 <p>
 OpenJML is a tool set for JML, built on the OpenJDK framework for Java.
-It is intended a the replacement for ESC/Java2, which is only for Java 1.4.
-OpenJML is current with Java 1.7u6.
+It is intended as the replacement for ESC/Java2, which is only for Java 1.4.
+OpenJML is current with Java 1.7u40.
 This page makes available some resources for OpenJML.
 OpenJML is a work in progress.
 </p>
 <p>
 <b>Note that OpenJML is not a theorem prover or model checker itself.</b> OpenJML 
-translates JML specifications into SMTLIB format and passes the proof 
+translates JML specifications into <a href="http://www.smtlib.org">SMT-LIB format</a> and passes the proof 
 problems implied by the Java+JML program to backend SMT solvers. Success in checking
 the specifications against the code will depend on 
 </p>
@@ -82,7 +83,7 @@ is <a href="http://jmlspecs.sourceforge.net/openjml-updatesite">http://jmlspecs.
 
 
 <h3>Development of OpenJML</h3>
-<p>Developers on OpenJML can retrieve a project-set file to download source code from SVN and create the corresponding projects within Eclipse from 
+<p>Developers contributing to OpenJML can retrieve a project-set file to download source code from SVN and create the corresponding projects within Eclipse from 
 <a href="OpenJML-projectSet.psf">here</a>.
 </p>
 <p>Alternately, the set of SVN commands needed to checkout all the pieces of the
@@ -90,5 +91,5 @@ OpenJML source code into the directory structure expected by Eclipse is
 <a href="svn_commands">here</a>.
 </p>
 <p>
-The general instructions for setting up a development environment are found on the <a href="https://sourceforge.net/apps/trac/jmlspecs/wiki/OpenJmlSetup">JML wiki</a>.
+The general instructions for setting up a development environment are found on the <a href="https://sourceforge.net/projects/jmlspecs/wiki/OpenJmlSetup">JML wiki</a>.
 </p>
