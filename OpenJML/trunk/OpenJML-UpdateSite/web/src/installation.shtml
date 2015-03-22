@@ -26,7 +26,12 @@ The functionality is available
 To install the <b>command-line tool</b>, complete these steps:
 </p>
 <ul>
-<li>download the zipped package from <a href="openjml.tar.gz">here</a>. Unzip and untar it into a folder of your choice.</li>
+<li>download the zipped package from <a href="openjml.tar.gz">here</a>. 
+Then select (possibly create) a folder of your choice to hold the installation, cd to that directory, and
+<ul>
+<li>unzip the .zip file: gunzip openjml.zip</li>
+<li>or, untar the tar.gz file: tar -xvfz openjml.tar.gz</li>
+</ul>
 <li>For static checking, you will need an SMT solver. Make a choice from the
 list <a href="#SMT">below</a>, and install it according to its instructions.</li>
 </ul> 
@@ -34,7 +39,10 @@ list <a href="#SMT">below</a>, and install it according to its instructions.</li
 To install the <b>Eclipse plug-in</b>, use the Eclipse mechanism for installing
 plug-ins from an update site. Use this URL for the update site: 
 <code>http://jmlspecs.sourceforge.net/openjml-updatesite</code>.
-The plug-in works with Eclipse 4.2.1ff.
+The plug-in works with the Eclipse Kepler SR2 and Luna 4.4.0ff releases; 
+most functionality may work with the Juno release (Eclipse 4.2.2ff), but support for Juno is deprecated..
+</p><p>
+The plug-in also needs SMT solvers as described above, for static checking.
 </p><p>
 Before performing static checking with the plug-in, you need to open the 
 OpenJML Solvers preference page, set a default prover (yices2 or z3_4_3),
