@@ -25,7 +25,7 @@ These are program errors that would result in Java runtime exceptions.
   <td></td>
 </tr>
 <tr>
-  <td bgcolor=#FFFF44><code>PossiblyNegativeSize</code><BR>NegativeArraySizeException</BR></td>
+  <td bgcolor=#44FF44><code>PossiblyNegativeSize</code><BR>NegativeArraySizeException</BR></td>
   <td>In Java array creation expressions, the size may not be negative</td>
   <td></td>
 </tr>
@@ -67,9 +67,9 @@ These are program errors that would result in Java runtime exceptions.
   <td>TBD: comment on when enabled</td>
 </tr>
 <tr>
-  <td bgcolor=#FF4444>TBD<BR>ArrayStoreException</BR></td>
-  <td></td>
-  <td>Planned</td>
+  <td bgcolor=#FFFF44><code>PossiblyBadArrayAssignment</code><BR>ArrayStoreException</BR></td>
+  <td>Runtime assignment of an object as an array element, where the runtime class of the object is not a subtype of the dynamic class of the array elements</td>
+  <td>Implemented for ESC; RAC results in only the Java error</td>
 </tr>
 <tr>
   <td bgcolor=#FF4444>TBD<BR></BR></td>
