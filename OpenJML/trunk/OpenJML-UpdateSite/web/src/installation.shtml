@@ -28,11 +28,11 @@ The functionality is available
 To install the <b>command-line tool</b>, complete these steps:
 </p>
 <ul>
-<li>download the zipped package from <a href="openjml.tar.gz">here</a>. 
+<li>download the <a href="openjml.tar.gz">zip file</a> or the <a href="openjml.tar.gz">tar.gz file</a>. 
 Then select (possibly create) a folder of your choice to hold the installation, cd to that directory, and either
 <ul>
-<li>unzip the .zip file: gunzip openjml.zip</li>
-<li>or, untar the tar.gz file: tar -xvfz openjml.tar.gz</li>
+<li>unzip the .zip file: <code>gunzip openjml.zip</code></li>
+<li>or, untar the tar.gz file: <code>tar -xvfz openjml.tar.gz</code></li>
 </ul>
 </li>
 <li>For static checking, you will need an SMT solver. Make a choice from the
