@@ -62,9 +62,9 @@ These are program errors that would result in Java runtime exceptions.
   <td></td>
 </tr>
 <tr>
-  <td bgcolor=#44FF44>TBD<BR>AssertionError</BR></td>
+  <td bgcolor=#44FF44><code>Assert</code><BR>AssertionError</BR></td>
   <td>Explicit Java assert statement</td>
-  <td>TBD: comment on when enabled</td>
+  <td>For RAC, the JML check is performed when <code>-racJavaChecks</code> is enabled for rac compilation</td>
 </tr>
 <tr>
   <td bgcolor=#FFFF44><code>PossiblyBadArrayAssignment</code><BR>ArrayStoreException</BR></td>
@@ -237,11 +237,13 @@ does is undefined.
   <td>A cast to an illegal type is not allowed in a JML expression</td>
   <td></td>
 </tr>
+<!-- FIXME
 <tr>
   <td bgcolor=#44FF44><code>TBD</code><BR>AssertionError</BR></td>
   <td>Explicit Java assert statement</td>
   <td>TBD: comment on when enabled</td>
 </tr>
+-->
 </table>
 
 
