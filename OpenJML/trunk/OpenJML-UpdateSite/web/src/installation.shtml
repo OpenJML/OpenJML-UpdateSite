@@ -25,11 +25,11 @@ The functionality is available
 <h2>Installation</h2>
 
 <p>
-To install the <b>command-line tool</b>, complete these steps:
+To install the <b>command-line tool</b>, complete these steps: [TBD - revise the discussion of SMT solvers ]
 </p>
 <ul>
-<li>download the <a href="openjml.tar.gz">zip file</a> or the <a href="openjml.tar.gz">tar.gz file</a>. 
-Then select (possibly create) a folder of your choice to hold the installation, cd to that directory, and either
+<li>download the <a href="openjml.zip">zip file</a> or the <a href="openjml.tar.gz">tar.gz file</a>. 
+Then select (creating if necessary) a folder of your choice to hold the installation, cd to that directory, and either
 <ul>
 <li>unzip the .zip file: <code>gunzip openjml.zip</code></li>
 <li>or, untar the tar.gz file: <code>tar -xvfz openjml.tar.gz</code></li>
@@ -40,7 +40,7 @@ list <a href="#SMT">below</a>, and install it according to its instructions.</li
 </ul> 
 <p>
 To install the <b>Eclipse plug-in</b>, use the Eclipse mechanism for installing
-plug-ins from an update site. Use this URL for the update site: 
+plug-ins from an update site, using this URL for the update site: 
 <code>http://jmlspecs.sourceforge.net/openjml-updatesite</code>.
 The plug-in works with the Eclipse Kepler SR2 and Luna 4.4.0ff releases; 
 most functionality may work with the Juno release (Eclipse 4.2.2ff), but support for Juno is deprecated..
@@ -65,10 +65,6 @@ adapter code is often needed. OpenJML has been tested with
 <li><a href="http://yices.csl.sri.com/">Yices</a> (version 2.1) on Windows or Mac OSX</li>
 <li>(Linux platforms may well work but have not been tested.)</li>
 </ul>
-<p>
-(Note that Yices does not yet handle quantified 
-statements, such as you might use to specify axioms.)
-</p>
 
 <a name="Execution"/>
 <h2>Execution</h2>
@@ -80,22 +76,19 @@ To execute OpenJML, you need
 <li>An appropriate Java VM: Java 7</li>
 <li>A copy of the OpenJML release. The release
 contains the openjml.jar, jmlspecs.jar, and jmlruntime.jar files.
-The release may be installed anywhere you like.</li>
+The release may be installed anywhere you like. In the examples below, the (absolute path or path relative to the current working directory to the) installation directory is indicated by <i>$INSTALL</I></li>
 <li>For static checking, an appropriate SMT solver.</li>
 </ul>
 
 
 <p>
-There are a few important topics for the user to know:
+There are a few important topics for the user to know; these are discussed at the indicated links:
 </p>
 <ul>
-<li><a href="paths.shtml">How source files, class files, and specification files are found</a></li>
+<li><a href="paths.shtml">How source files, class files, and specification files are specified by the user and found by OpenJML</a></li>
 <li><a href="commandline.shtml">Command-line options</a></li>
 <li><a href="checks.shtml">The set of checks the tools perform</a></li>
 </ul>
-<p>
-These topics are discussed at the indicated links.
-</p>
 
 <h3>Type-checking</h3>
 
@@ -105,7 +98,7 @@ The OpenJML tool operates like a Java compiler, on a set of files.  For example,
 <div style="background-color:lightblue">
  <pre>
 
-java -jar openjml.jar -noPurityCheck A.java
+java -jar <I>$INSTALL</I>/openjml.jar -no-purityCheck A.java
 
 </pre> 
 </div>
@@ -153,7 +146,7 @@ yices, substitute "yices2" for "z3_4_3".
 <div style="background-color:lightblue">
 <pre>
 
-java -jar openjml.jar -esc -prover z3_4_3 -exec <em>path-to-executable</em> -noPurityCheck B.java
+java -jar <i>$INSTALL</i>/openjml.jar -esc -prover z3_4_3 -exec <em>path-to-executable</em> -no-purityCheck B.java
 
 </pre>
 </div>
@@ -204,9 +197,9 @@ B.java:12: warning: Associated declaration
 </pre> 
 </div>
 <ul>
-<li>The first two warnings point out that the specification of the method <code>setj</code> states that the field <code>j</code> (and nothing else) is modified by the method, but the method actually modifies <code>k</code>.
+<li>The first two messages point out that the specification of the method <code>setj</code> states that the field <code>j</code> (and nothing else) is modified by the method, but the method actually modifies <code>k</code>.
 </li>
-<li>The second pair of warnings points out that the call of <code>setj</code> in method <code>main</code> does not satisfy the postcondition; the "Associated declaration" warning that follows indicates the violated postcondition.
+<li>The second pair of messages points out that the call of <code>setj</code> in method <code>main</code> does not satisfy the postcondition; the "Associated declaration" warning that follows indicates the violated postcondition.
 </li>
 </ul>
 
@@ -217,7 +210,7 @@ To compile the JML specifications in the given files and in any files that they 
 <div style="background-color:lightblue">
 <pre>
 
-java -jar openjml.jar -rac -noPurityCheck B.java
+java -jar <i>$INSTALL</i>/openjml.jar -rac -noPurityCheck B.java
 
 </pre>
 </div>
@@ -228,7 +221,7 @@ Then execute this command (the jmlruntime.jar is part of the OpenJML installatio
 <div style="background-color:lightblue">
 <pre>
 
-java -classpath ".;jmlruntime.jar" B
+java -classpath ".;<i>$INSTALL</i>/jmlruntime.jar" B
 
 </pre>
 </div>
@@ -276,7 +269,7 @@ To produce javadoc files with JML specifications inserted, use the following com
 <div style="background-color:lightblue">
 <pre>
 
-java -jar openjml.jar -doc -noPurityCheck </code><i>files-or-packages</i>
+java -jar <i>$INSTALL</i>/openjml.jar -doc -no-purityCheck </code><i>files-or-packages</i>
 
 </pre>
 </div>
