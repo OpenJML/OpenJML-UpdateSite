@@ -1,5 +1,5 @@
 
-<h2>Eclipse plug-in for OpenJML</h2>
+<h2 align="center">Eclipse plug-in for OpenJML</h2>
 <p>
 This page provides installation instructions and a brief overview of the
 functionality of the OpenJML Eclipse plugin. More detailed information
@@ -10,7 +10,8 @@ with the plugin.
 <p>
 OpenJML provides a standard Eclipse plug-in update site at
 <a href="openjml-updatesite">http://jmlspecs.sourceforge.net/openjml-updatesite</a>.
-The plug-in is tested with Eclipse 4.2 (Juno). The installation procedure is standard for Eclipse:
+The plug-in is supported for current versions of the Kepler and Luna releases (Juno generally works but is deprecated). 
+The installation procedure is standard for Eclipse:
 </p>
 <ul>
 <li>Select the menu option <code>Help >> Install New Software</code>
@@ -25,6 +26,7 @@ The plug-in is tested with Eclipse 4.2 (Juno). The installation procedure is sta
 </li>
 <li>Read and accept the license agreements and press <code>Finish</code>
 </li>
+<li>Restart Eclipse</li>
 </ul>
 <p>
 These instructions may vary slightly on other Eclipse versions or on MacOS platforms.
@@ -43,7 +45,12 @@ enter the path to the solver executable.
 </li>
 </ul>
 
+<p>
+[TBD - Add a description of installation using the dropins folder]
+</p>
+
 <h3>Features</h3>
+[TBD - this section needs review and updating]
 <h4>Menubar and toolbar items</h4>
 <p>
 The Menubar and toolbar contain these additional items:
