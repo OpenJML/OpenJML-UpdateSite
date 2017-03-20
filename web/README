@@ -1,0 +1,6 @@
+The files in this directory are used to create the obsolete web site at jmlspecs.sourceforge.net.
+(The new site is at www.openjml.org, which redirects to a site managed from GitHub).
+
+Use toSFweb to regenerate and upload the pages of the web site.
+Use toSFproject to upload files to the sourceforge project site.
+Use toSF to upload the above two sets of files + the openjml release files.
