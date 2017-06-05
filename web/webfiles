@@ -4,11 +4,6 @@ put web/temp/*.shtml
 put web/favicon.ico
 put web/book.css
 put web/style.css
-put web/files/OpenJML-projectSet.psf
-put web/files/svn_commands
-put web/files/OpenJMLUserGuide.pdf
-put web/files/OpenJMLUserGuide*.html
-put web/files/OpenJMLUserGuide.css
 put web/jml-logo-small64.png
 cd openjml-updatesite
 put web/openjml-updatesite/index.html
