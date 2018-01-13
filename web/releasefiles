@@ -6,5 +6,7 @@ put content.jar
 put artifacts.jar
 put features/org.jmlspecs.openjml.OpenJMLFeature_${version}.jar features
 put plugins/org.jmlspecs.*${version}.jar plugins
+put features/org.jmlspecs.SMTSolvers_${smtversion}.jar features
+put plugins/org.jmlspecs.Solvers_${smtversion}.jar plugins
 cd ..
 cd ..
