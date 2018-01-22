@@ -318,18 +318,6 @@
    <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.8.26.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.8.26">
       <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
    </feature>
-   <feature url="features/org.jmlspecs.SMTSolvers_1.0.1.jar" id="org.jmlspecs.SMTSolvers" version="1.0.1">
-      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
-   </feature>
-   <feature url="features/org.jmlspecs.SMTSolvers_1.0.2.jar" id="org.jmlspecs.SMTSolvers" version="1.0.2">
-      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
-   </feature>
-   <feature url="features/org.jmlspecs.SMTSolvers_1.0.3.jar" id="org.jmlspecs.SMTSolvers" version="1.0.3">
-      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
-   </feature>
-   <feature url="features/org.jmlspecs.SMTSolvers_1.0.4.jar" id="org.jmlspecs.SMTSolvers" version="1.0.4">
-      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
-   </feature>
    <feature url="features/org.jmlspecs.SMTSolvers_1.1.0.jar" id="org.jmlspecs.SMTSolvers" version="1.1.0">
       <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
    </feature>
