@@ -1,12 +1,10 @@
 cd htdocs
 put web/src/index.html
-put web/favicon.ico
-put web/book.css
-put web/style.css
-put web/jml-logo-small64.png
+put web/src/favicon.ico
+put web/src/style.css
+put web/src/jml-logo-small64.png
 cd openjml-updatesite
 put web/openjml-updatesite/index.html
-put web/book.css
 cd ..
 cd ..
 
