@@ -15,7 +15,7 @@ rm -rf web/files
 mkdir web/files
 export version=`ls -t features/*OpenJMLFeature* | head -1 | sed -e sxfeatures/org.jmlspecs.openjml.OpenJMLFeature_xx -e sx.jarxx`
 export smtversion=`ls -t features/*SMTSolvers* | head -1 | sed -e sxfeatures/org.jmlspecs.SMTSolvers_xx -e sx.jarxx`
-file=`ls -t ../OpenJML/OpenJML/*.zip | head -1`
+file=`ls -t ../OpenJML/OpenJML/releaseBuilds/*.zip | head -1`
 ##filedate=`echo $file | tr -d [a-zA-Z./] | tr -d '-'`
 echo The current version is $version, smt $smtversion, file $file
 echo The current version is $version, smt $smtversion, file $file | cat web/README-root - > web/files/README
