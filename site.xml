@@ -405,7 +405,9 @@
    <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.8.42.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.8.42">
       <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
    </feature>
-   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.8.43.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.8.43"/>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.8.43.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.8.43">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
    <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.8.44.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.8.44">
       <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
    </feature>
@@ -422,6 +424,9 @@
       <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
    </feature>
    <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.8.47.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.8.47">
+      <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
+   </feature>
+   <feature url="features/org.jmlspecs.openjml.OpenJMLFeature_0.8.48.jar" id="org.jmlspecs.openjml.OpenJMLFeature" version="0.8.48">
       <category name="org.jmlspecs.openjml.OpenJMLPlugin"/>
    </feature>
    <category-def name="org.jmlspecs.openjml.OpenJMLPlugin" label="OpenJML">
